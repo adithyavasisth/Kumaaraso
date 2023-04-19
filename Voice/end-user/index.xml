@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1"> 
+    <form id="root">
+        <prompt xml:lang="en-us">
+            <audio src="en/audio/welcome.wav"/>
+        </prompt>
+        <prompt xml:lang="fr-fr">
+            <audio src="fr/audio/welcome.wav"/>
+        </prompt>
+        <goto next="language.xml" />
+    </form>
+</vxml>

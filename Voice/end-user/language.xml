@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+    
+    <menu id="language" dtmf="true">
+        <prompt xml:lang="en-us">
+            <audio src="en/audio/language.wav"/>
+        </prompt>
+        <prompt xml:lang="fr-fr">
+            <audio src="fr/audio/language.wav"/>
+        </prompt>
+        <choice next="en/menu.xml"></choice>
+        <choice next="fr/menu.xml"></choice>
+        <!-- repeat the menu for no match or no input -->
+        <noinput>
+            <prompt xml:lang="en-us">
+                <audio src="en/audio/invalid.wav"/>
+            </prompt>
+            <prompt xml:lang="fr-fr">
+                <audio src="en/audio/invalid.wav"/>
+            </prompt>
+            <reprompt />
+        </noinput>
+        <nomatch>
+            <prompt xml:lang="en-us">
+                <audio src="en/audio/invalid.wav"/>
+            </prompt>
+            <prompt xml:lang="fr-fr">
+                <audio src="en/audio/invalid.wav"/>
+            </prompt>
+            <reprompt />
+        </nomatch>
+    </menu>
+
+</vxml>

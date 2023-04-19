@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+    <menu id="english-menu" dtmf="true">
+        <prompt xml:lang="en-us">
+            <audio src="en/audio/menu.wav"/>
+        </prompt>
+        <choice next="farming.xml"></choice>
+        <choice next="questions.xml"></choice>
+        <choice dtmf="9" next="../language.xml"></choice>
+        <!-- repeat the menu for no match or no input -->
+        <noinput>
+            <prompt xml:lang="en-us">
+                <audio src="en/audio/invalid.wav"/>
+            </prompt>
+            <reprompt />
+        </noinput>
+        <nomatch>
+            <prompt xml:lang="en-us">
+                <audio src="en/audio/invalid.wav"/>
+            </prompt>
+            <reprompt />
+        </nomatch>
+    </menu>
+</vxml>
