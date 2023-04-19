@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1">
+<vxml version="2.1" application="index.xml">
     <menu id="farming">
         <prompt xml:lang="en-us">
-            <audio src="en/audio/farming.wav"/>
+            <audio src="./audio/farming.wav"/>
         </prompt>
         <choice next="#cultivating"></choice>
         <choice next="#planting"></choice>
@@ -12,13 +12,13 @@
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt xml:lang="en-us">
-                <audio src="en/audio/invalid.wav"/>
+                <audio src="./audio/invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt xml:lang="en-us">
-                <audio src="en/audio/invalid.wav"/>
+                <audio src="./audio/invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>
@@ -27,7 +27,7 @@
     <form id="cultivating">
         <block>
             <prompt xml:lang="en-us">
-                <audio src="en/audio/farming/cultivating.wav"/>
+                <audio src="./audio/farming/cultivating.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>
@@ -36,7 +36,7 @@
     <form id="planting">
         <block>
             <prompt xml:lang="en-us">
-                <audio src="en/audio/farming/planting.wav"/>
+                <audio src="./audio/farming/planting.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>
@@ -45,7 +45,7 @@
     <form id="harvesting">
         <block>
             <prompt xml:lang="en-us">
-                <audio src="en/audio/farming/harvesting.wav"/>
+                <audio src="./audio/farming/harvesting.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>

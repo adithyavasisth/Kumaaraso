@@ -31,5 +31,7 @@ echo Done generating French Audio.
 # convert mp3 to wav
 echo Converting mp3 to wav...
 for f in $(find . -name "*.mp3"); do ffmpeg -i $f -acodec pcm_s16le -ac 1 -ar 16000 ${f/mp3/wav}; done
+# remove mp3
+find . -name "*.mp3" -type f -delete
 echo Done converting mp3 to wav.
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1">
+<vxml version="2.1" application="index.xml">
     <menu id="questions" dtmf="true">
         <prompt xml:lang="fr-fr">
-            <audio src="fr/audio/questions.wav"/>
+            <audio src="./audio/questions.wav"/>
         </prompt>
         <choice next="#ask-question"></choice>
         <choice next="#listen-answer"></choice>
@@ -11,13 +11,13 @@
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt>
-                <audio src="fr/audio/invalid.wav"/>
+                <audio src="./audio/invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt>
-                <audio src="fr/audio/invalid.wav"/>
+                <audio src="./audio/invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>
@@ -27,10 +27,10 @@
     <form id="ask-question">
         <record name="message" beep="true" maxtime="30s" type="video/mp4" dtmfterm="true">
             <prompt xml:lang="fr-fr">
-                <audio src="fr/audio/questions/ask.wav"/>
+                <audio src="./audio/questions/ask.wav"/>
             </prompt>
             <prompt xml:lang="fr-fr">
-                <audio src="fr/audio/questions/confirm.wav"/>
+                <audio src="./audio/questions/confirm.wav"/>
             </prompt>
             <filled>
                 <value expr="message" />
@@ -38,7 +38,7 @@
         </record>
         <block>
             <prompt xml:lang="fr-fr">
-                <audio src="fr/audio/questions/asked.wav"/>
+                <audio src="./audio/questions/asked.wav"/>
             </prompt>
             <goto next="menu.xml" />
         </block>
@@ -47,7 +47,7 @@
     <form id="listen-answer">
         <block>
             <prompt xml:lang="fr-fr">
-                <audio src="fr/audio/questions/listen.wav"/>
+                <audio src="./audio/questions/listen.wav"/>
             </prompt>
             <goto next="menu.xml" />
         </block>
