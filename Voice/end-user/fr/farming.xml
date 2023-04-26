@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1" application="index.xml">
+<vxml version="2.1" application="../index.xml">
     <menu id="farming">
         <prompt xml:lang="fr-fr">
-            <audio src="./audio/farming.wav"/>
+            <audio src="./audio/fr-farming.wav"/>
         </prompt>
-        <choice next="#cultivating"></choice>
-        <choice next="#planting"></choice>
-        <choice next="#harvesting"></choice>
-        <choice next="#english-menu"></choice>
-        <choice dtmf="9" next="#language"></choice>
+        <choice dtmf="1" next="#cultivating"></choice>
+        <choice dtmf="2" next="#planting"></choice>
+        <choice dtmf="3" next="#harvesting"></choice>
+        <choice dtmf="4" next="./menu.xml"></choice>
+        <choice dtmf="9" next="../language.xml"></choice>
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/invalid.wav"/>
+                <audio src="./audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/invalid.wav"/>
+                <audio src="./audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>
@@ -27,7 +27,7 @@
     <form id="cultivating">
         <block>
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/farming/cultivating.wav"/>
+                <audio src="./audio/fr-cultivating.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>
@@ -36,7 +36,7 @@
     <form id="planting">
         <block>
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/farming/planting.wav"/>
+                <audio src="./audio/fr-planting.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>
@@ -45,7 +45,7 @@
     <form id="harvesting">
         <block>
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/farming/harvesting.wav"/>
+                <audio src="./audio/fr-harvesting.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>

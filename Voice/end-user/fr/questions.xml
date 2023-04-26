@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1" application="index.xml">
+<vxml version="2.1" application="../index.xml">
     <menu id="questions" dtmf="true">
         <prompt xml:lang="fr-fr">
-            <audio src="./audio/questions.wav"/>
+            <audio src="./audio/fr-questions.wav"/>
         </prompt>
-        <choice next="#ask-question"></choice>
-        <choice next="#listen-answer"></choice>
-        <choice next="menu.xml"></choice>
+        <choice dtmf="1" next="#ask-question"></choice>
+        <choice dtmf="2" next="#listen-answer"></choice>
+        <choice dtmf="3" next="./menu.xml"></choice>
         <choice dtmf="9" next="../language.xml"></choice>
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt>
-                <audio src="./audio/invalid.wav"/>
+                <audio src="./audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt>
-                <audio src="./audio/invalid.wav"/>
+                <audio src="./audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>
@@ -27,29 +27,29 @@
     <form id="ask-question">
         <record name="message" beep="true" maxtime="30s" type="video/mp4" dtmfterm="true">
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/questions/ask.wav"/>
-            </prompt>
-            <prompt xml:lang="fr-fr">
-                <audio src="./audio/questions/confirm.wav"/>
+                <audio src="./audio/fr-ask.wav"/>
             </prompt>
             <filled>
+                <prompt xml:lang="fr-fr">
+                    <audio src="./audio/fr-confirm.wav"/>
+                </prompt>
                 <value expr="message" />
             </filled>
         </record>
         <block>
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/questions/asked.wav"/>
+                <audio src="./audio/fr-asked.wav"/>
             </prompt>
-            <goto next="menu.xml" />
+            <goto next="./menu.xml" />
         </block>
     </form>
 
     <form id="listen-answer">
         <block>
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/questions/listen.wav"/>
+                <audio src="./audio/fr-listen.wav"/>
             </prompt>
-            <goto next="menu.xml" />
+            <goto next="./menu.xml" />
         </block>
     </form>
 </vxml>

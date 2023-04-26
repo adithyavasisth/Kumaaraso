@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1" application="index.xml">
+<vxml version="2.1" application="./index.xml">
     
     <menu id="language" dtmf="true">
         <prompt xml:lang="en-us">
-            <audio src="./en/audio/language.wav"/>
+            <audio src="./en/audio/en-language.wav"/>
         </prompt>
         <prompt xml:lang="fr-fr">
-            <audio src="./fr/audio/language.wav"/>
+            <audio src="./fr/audio/fr-language.wav"/>
         </prompt>
-        <choice next="./en/menu.xml"></choice>
-        <choice next="./fr/menu.xml"></choice>
+        <choice dtmf="1" next="./en/menu.xml"></choice>
+        <choice dtmf="2" next="./fr/menu.xml"></choice>
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt xml:lang="en-us">
-                <audio src="./en/audio/invalid.wav"/>
+                <audio src="./en/audio/en-invalid.wav"/>
             </prompt>
             <prompt xml:lang="fr-fr">
-                <audio src="./en/audio/invalid.wav"/>
+                <audio src="./en/audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt xml:lang="en-us">
-                <audio src="./en/audio/invalid.wav"/>
+                <audio src="./en/audio/en-invalid.wav"/>
             </prompt>
             <prompt xml:lang="fr-fr">
-                <audio src="./en/audio/invalid.wav"/>
+                <audio src="./en/audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>

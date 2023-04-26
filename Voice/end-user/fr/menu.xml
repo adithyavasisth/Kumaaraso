@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1" application="index.xml">
+<vxml version="2.1" application="../index.xml">
     <menu id="english-menu" dtmf="true">
         <prompt xml:lang="fr-fr">
-            <audio src="./audio/menu.wav"/>
+            <audio src="./audio/fr-menu.wav"/>
         </prompt>
-        <choice next="farming.xml"></choice>
-        <choice next="questions.xml"></choice>
+        <choice dtmf="1" next="farming.xml"></choice>
+        <choice dtmf="2" next="questions.xml"></choice>
         <choice dtmf="9" next="../language.xml"></choice>
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/invalid.wav"/>
+                <audio src="./audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt xml:lang="fr-fr">
-                <audio src="./audio/invalid.wav"/>
+                <audio src="./audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>
