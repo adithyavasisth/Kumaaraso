@@ -2,6 +2,7 @@
 <vxml version="2.1"> 
     <form id="root">
         <block>
+            <!-- welcome message in english and french -->
             <prompt>
                 <audio src="./en/audio/en-welcome.wav" />
             </prompt>

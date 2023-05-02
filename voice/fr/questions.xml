@@ -25,7 +25,8 @@
 
     <!-- record the user's experience and play it back to them -->
     <form id="ask-question">
-        <record name="message" beep="true" maxtime="30s" type="video/mp4" dtmfterm="true">
+        <var name="caller" expr="session.connection.remote.uri"/>
+        <record name="record" beep="true" maxtime="30s" type="video/mp4" dtmfterm="true">
             <prompt xml:lang="fr-fr">
                 <audio src="./audio/fr-ask.wav"/>
             </prompt>
@@ -33,7 +34,7 @@
                 <prompt xml:lang="fr-fr">
                     <audio src="./audio/fr-confirm.wav"/>
                 </prompt>
-                <value expr="message" />
+                <value expr="record" />
             </filled>
         </record>
         <block>
