@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vxml version="2.1" application="../index.xml">
     <menu id="farming">
+        <!-- list out the menu options -->
         <prompt xml:lang="en-us">
             <audio src="./audio/en-farming.wav"/>
         </prompt>
@@ -24,6 +25,7 @@
         </nomatch>
     </menu>
 
+    <!-- provide the information about cultivation -->
     <form id="cultivating">
         <block>
             <prompt xml:lang="en-us">
@@ -33,6 +35,7 @@
         </block>
     </form>
 
+    <!-- provide the information about planting -->
     <form id="planting">
         <block>
             <prompt xml:lang="en-us">
@@ -42,6 +45,7 @@
         </block>
     </form>
 
+    <!-- provide the information about harvesting -->
     <form id="harvesting">
         <block>
             <prompt xml:lang="en-us">

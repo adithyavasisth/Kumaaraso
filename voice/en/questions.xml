@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vxml version="2.1" application="../index.xml">
     <menu id="questions" dtmf="true">
+        <!-- provide a disclaimer and ask the user to select an option -->
         <prompt xml:lang="en-us">
             <audio src="./audio/en-questions.wav"/>
         </prompt>
@@ -27,6 +28,7 @@
     <form id="ask-question">
         <var name="caller" expr="session.connection.remote.uri"/>
         <record name="question" beep="true" maxtime="30s" type="video/mp4" dtmfterm="true">
+            <!-- prompt the user to ask a question -->
             <prompt xml:lang="en-us">
                 <audio src="./audio/en-ask.wav"/>
             </prompt>
@@ -41,12 +43,13 @@
             <prompt xml:lang="en-us">
                 <audio src="./audio/en-asked.wav"/>
             </prompt>
-            <submit next="../voice-server/save_recording.php" method="post" namelist="question" enctype="multipart/form-data" />
+            <submit next="http://34.70.61.98:5000/" method="post" namelist="caller question" enctype="multipart/form-data" />
             <!-- <goto next="./menu.xml" /> -->
         </block>
     </form>
 
     <form id="listen-answer">
+        <!-- not implemented for this demo and will be fetched from the database in the future -->
         <block>
             <prompt xml:lang="en-us">
                 <audio src="./audio/en-listen.wav"/>

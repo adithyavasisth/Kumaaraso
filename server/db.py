@@ -42,6 +42,7 @@ def fetch_all():
         
     return results
 
+# add the path to the database
 def add_entry(path):
     with pool.connect() as conn:
         conn.execute(sqlalchemy.text("INSERT INTO audio (path) VALUES (:path)"), path=path)

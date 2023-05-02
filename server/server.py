@@ -1,5 +1,4 @@
 # create a flask api server to handle requests
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from db import fetch_all, add_entry
@@ -11,6 +10,7 @@ CORS(app)
 @app.route('/', methods=['GET'])
 def get_all():
     # return the results from the DB
+    # dummy request for now to test the DB
     return jsonify(fetch_all())
 
 @app.route('/', methods=['POST'])
@@ -27,6 +27,6 @@ def upload_audio():
     blob = bucket.blob(outfile_name)
     blob.upload_from_string(infile)
     
-    # store the path url in the DB
+    # store the path url in the DB for later retrieval
     path_url = blob.public_url
     add_entry(path_url)
