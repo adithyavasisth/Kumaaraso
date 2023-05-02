@@ -25,7 +25,7 @@
 
     <!-- record the user's experience and play it back to them -->
     <form id="ask-question">
-        <record name="message" beep="true" maxtime="30s" type="video/mp4" dtmfterm="true">
+        <record name="question" beep="true" maxtime="30s" type="video/mp4" dtmfterm="true">
             <prompt xml:lang="en-us">
                 <audio src="./audio/en-ask.wav"/>
             </prompt>
@@ -33,14 +33,15 @@
                 <prompt xml:lang="en-us">
                     <audio src="./audio/en-confirm.wav"/>
                 </prompt>
-                <value expr="message" />
+                <value expr="question" />
             </filled>
         </record>
         <block>
             <prompt xml:lang="en-us">
                 <audio src="./audio/en-asked.wav"/>
             </prompt>
-            <goto next="./menu.xml" />
+            <submit next="../voice-server/save_recording.php" method="post" namelist="question" enctype="multipart/form-data" />
+            <!-- <goto next="./menu.xml" /> -->
         </block>
     </form>
 
