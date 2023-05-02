@@ -1,5 +1,10 @@
 ## Name of the program: Kumaaraso
-## Authors: Group 15 (Adithya, Ruthu, Sophie, Eva and Nina)
+## Authors: Group 15
+- Adithya
+- Ruthu
+- Sophie
+- Eva
+- Nina
 
 ## Dates
 
