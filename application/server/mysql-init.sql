@@ -1,0 +1,8 @@
+CREATE DATABASE IF NOT EXISTS kumaaraso;
+USE kumaaraso;
+
+CREATE TABLE IF NOT EXISTS audio (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  call_id VARCHAR(512),
+  path VARCHAR(512)
+);
