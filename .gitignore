@@ -1,2 +1,6 @@
 __pycache__
 cert
+
+package-lock.json
+node_modules
+application/server/mysql-data
