@@ -24,12 +24,18 @@ app.get("/test", (req, res) => {
 app.post("/", upload.single("question"),(req, res) => {
   console.log("POST request received");
   console.log(req);
-  
+
   // remove the + sign from the caller number and add timestamp
   const timestamp = new Date().toISOString().slice(0, 19);
   const caller = req.body.caller.replace("+", "") + "_" + timestamp;
   const infile = req.body.question;
   const outfile_name = `audio-recording/${caller}.mp3`;
+
+  // save the file locally
+  fs.writeFile(outfile_name, infile, (err) => {
+      if (err) throw err;
+      console.log("File saved locally");
+  });
 
   // Upload the file to Google Cloud Storage
   const storage = new Storage();
