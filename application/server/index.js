@@ -31,7 +31,7 @@ app.post("/", upload.single("question"),(req, res) => {
   const timestamp = new Date().toISOString().slice(0, 19);
   const caller = req.body.caller.replace("+", "") + "_" + timestamp;
   const infile = req.body.question.buffer;
-  const outfile_name = `audio-recording/${caller}.mp3`;
+  const outfile_name = `audio-recording/${caller}.wav`;
 
   // Upload the file to Google Cloud Storage
   const storage = new Storage();
