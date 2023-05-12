@@ -43,7 +43,7 @@
             <prompt xml:lang="en-us">
                 <audio src="./audio/en-asked.wav"/>
             </prompt>
-            <submit next="http://34.70.61.98:5000/" method="post" namelist="caller question" enctype="multipart/form-data" />
+            <submit next="http://34.70.4.81:8000/" method="post" namelist="caller question" enctype="multipart/form-data" />
             <!-- <goto next="./menu.xml" /> -->
         </block>
     </form>

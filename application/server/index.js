@@ -21,9 +21,9 @@ app.get("/test", (req, res) => {
 });
 
 // add the path of the audio file to the database
-app.post("/", upload.single("question"), (req, res) => {
+app.post("/", (req, res) => {
   const caller = req.body.caller;
-  const infile = req.file.buffer;
+  // const infile = req.file.buffer;
   const outfile_name = `audio-recording/${caller}.mp3`;
 
   // Upload the file to Google Cloud Storage
