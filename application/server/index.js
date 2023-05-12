@@ -21,7 +21,11 @@ app.get("/test", (req, res) => {
 });
 
 // add the path of the audio file to the database
-app.post("/", (req, res) => {
+app.post("/", upload.single("question"), (req, res) => {
+  console.log("POST request received");
+  console.log(req.body);
+  console.log(req.file);
+  
   const caller = req.body.caller;
   // const infile = req.file.buffer;
   const outfile_name = `audio-recording/${caller}.mp3`;
