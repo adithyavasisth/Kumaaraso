@@ -13,9 +13,9 @@ services:
       - ./mysql-data/:/var/lib/mysql
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -uroot -proot"]
-      interval: 10s
+      interval: 5s
       timeout: 5s
-      retries: 3
+      retries: 5
     networks:
       - app-network
 
@@ -44,6 +44,7 @@ services:
         restart: true
       app:
         condition: service_started
+        restart: true
     networks:
       - app-network
 
