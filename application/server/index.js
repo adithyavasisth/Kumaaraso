@@ -21,13 +21,13 @@ app.get("/test", (req, res) => {
 });
 
 // add the path of the audio file to the database
-app.post("/", upload.single("question"), (req, res) => {
+app.post("/", (req, res) => {
   console.log("POST request received");
 
   // remove the + sign from the caller number and add timestamp
   const timestamp = new Date().toISOString().slice(0, 19).replace("T", " ");
   const caller = req.body.caller.replace("+", "") + "_" + timestamp;
-  const infile = req.file.buffer;
+  const infile = req.body.question;
   const outfile_name = `audio-recording/${caller}.mp3`;
 
   // Upload the file to Google Cloud Storage
