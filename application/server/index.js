@@ -23,9 +23,10 @@ app.get("/test", (req, res) => {
 // add the path of the audio file to the database
 app.post("/", upload.single("question"),(req, res) => {
   console.log("POST request received");
-
+  console.log(req);
+  
   // remove the + sign from the caller number and add timestamp
-  const timestamp = new Date().toISOString().slice(0, 19).replace("T", " ");
+  const timestamp = new Date().toISOString().slice(0, 19);
   const caller = req.body.caller.replace("+", "") + "_" + timestamp;
   const infile = req.body.question;
   const outfile_name = `audio-recording/${caller}.mp3`;
