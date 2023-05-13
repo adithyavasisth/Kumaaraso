@@ -45,7 +45,7 @@ app.post("/", upload.single("question"), (req, res) => {
   blob.save(infile, (err) => {
     // Store the path URL in the DB for later retrieval
     const pathUrl = blob.publicUrl();
-    add_entry(call_id, pathUrl);
+    add_entry(caller, pathUrl);
     fs.readFile("./voice-xml/questions-to-menu.xml", (err, data) => {
       if (err) throw err;
       console.log("Sending response to client...", data);
