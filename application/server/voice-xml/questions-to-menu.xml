@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1" application="./index.xml">
+<vxml version="2.1" application="https://evolution.voxeo.com/hosting/FTPServlet/index.xml?cmd=get&dir=www%2FKumaaraso&accessToken=6A9D9BFD-35E4-48D2-A2AA-DBA2ECF6023A&file=index.xml">
     <form id="return-to-menu">
         <block>
-            <goto next="./en/menu.xml" />
+            <goto next="https://evolution.voxeo.com/hosting/FTPServlet/menu.xml?cmd=get&dir=www%2FKumaaraso%2Fen&accessToken=8C50A672-5D32-49CC-B635-8AFEE9BD5E24&file=menu.xml" />
         </block>
     </form>
 </vxml>
