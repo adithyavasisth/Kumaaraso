@@ -22,6 +22,14 @@ app.get("/test", (req, res) => {
   });
 });
 
+app.get('/xml', (req, res) => {
+  fs.readFile('./voice-xml/questions-to-menu.xml', (err, data) => {
+    if (err) throw err;
+    console.log('Sending response to client...', data);
+    res.send(data);
+  });
+});
+
 // add the path of the audio file to the database
 app.post("/", upload.single("question"), (req, res) => {
   console.log("POST request received");
