@@ -26,7 +26,8 @@ app.get('/xml', (req, res) => {
   fs.readFile('./voice-xml/questions-to-menu.xml', (err, data) => {
     if (err) throw err;
     console.log('Sending response to client...', data);
-    res.send(data);
+    res.type('text/xml');
+    res.status(200).send(data);
   });
 });
 
