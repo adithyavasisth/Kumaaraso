@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1" application="../index.xml">
+    <form id="return-to-menu">
+        <block>
+            <goto next="./menu.xml" />
+        </block>
+    </form>
+</vxml>

@@ -1,7 +1,9 @@
 const express = require("express");
-const { conn, add_entry } = require("./mysql-db");
+const fs = require("fs");
 const multer = require("multer");
 const { Storage } = require("@google-cloud/storage");
+
+const { conn, add_entry } = require("./database/mysql-db");
 
 const app = express();
 const upload = multer();
@@ -21,11 +23,8 @@ app.get("/test", (req, res) => {
 });
 
 // add the path of the audio file to the database
-app.post("/", upload.single("question"),(req, res) => {
+app.post("/", upload.single("question"), (req, res) => {
   console.log("POST request received");
-  console.log(req.body);
-  console.log('Files: ', req.files);
-  console.log('File: ', req.file);
 
   // remove the + sign from the caller number and add timestamp
   const timestamp = new Date().toISOString().slice(0, 19);
@@ -44,15 +43,13 @@ app.post("/", upload.single("question"),(req, res) => {
   console.log(`File name: ${outfile_name}`);
 
   blob.save(infile, (err) => {
-    if (err) {
-      console.error("Error uploading file:", err);
-      res.status(500).send("Error uploading file");
-    } else {
-      // Store the path URL in the DB for later retrieval
-      const pathUrl = blob.publicUrl();
-      add_entry(pathUrl);
-      res.status(200).send("File uploaded successfully");
-    }
+    // Store the path URL in the DB for later retrieval
+    const pathUrl = blob.publicUrl();
+    add_entry(pathUrl);
+    fs.readFile("./voice-xml/questions-to-menu.xml", "utf8", (err, data) => {
+      res.set("Content-Type", "text/xml");
+      res.status(200).send(data);
+    });
   });
 });
 
