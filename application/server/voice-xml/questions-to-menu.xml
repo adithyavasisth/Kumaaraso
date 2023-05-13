@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1" application="../index.xml">
+<vxml version="2.1">
     <form id="return-to-menu">
         <block>
             <goto next="./menu.xml" />
