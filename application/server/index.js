@@ -45,10 +45,10 @@ app.post("/", upload.single("question"), (req, res) => {
   blob.save(infile, (err) => {
     // Store the path URL in the DB for later retrieval
     const pathUrl = blob.publicUrl();
-    add_entry(pathUrl);
+    add_entry(call_id, pathUrl);
     fs.readFile("./voice-xml/questions-to-menu.xml", "utf8", (err, data) => {
-      res.set("Content-Type", "text/xml");
-      res.status(200).send(data);
+      console.log("Sending response to client...", data);
+      res.send(data);
     });
   });
 });

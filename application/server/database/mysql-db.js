@@ -13,8 +13,8 @@ conn.connect((err) => {
     console.log('Connected!');
 });
 
-function add_entry(pathUrl) {
-    const sql = `INSERT INTO audio (path) VALUES ('${pathUrl}')`;
+function add_entry(call_id, pathUrl) {
+    const sql = `INSERT INTO audio (call_id, path) VALUES ('${call_id}', '${pathUrl}')`;
 
     conn.query(sql, (err, result) => {
         if (err) throw err;
