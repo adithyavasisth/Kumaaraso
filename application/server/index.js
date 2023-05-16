@@ -90,6 +90,7 @@ function goToLanguageXML(url, res) {
   fs.readFile(`./voice-xml/${language}/${xml_file}`, (err, data) => {
     if (err) throw err;
     res.type("text/xml");
+    console.log('sending xml file to client -', xml_file);
     res.status(200).send(data);
   });
 }
@@ -110,6 +111,7 @@ function goToLanguageAudio(url, res) {
   fs.readFile(`./voice-xml/${language}/audio/${audioFile}`, (err, data) => {
     if (err) throw err;
     res.type('audio/wav');
+    console.log('sending audio file to client -', audioFile);
     res.status(200).send(data);
   });
 }
