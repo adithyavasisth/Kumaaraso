@@ -2,7 +2,7 @@
 <vxml version="2.1"> 
     <form id="root">
         <block>
-            <goto next="./language.xml" />
+            <goto next="http://34.70.4.81:8000/language.xml" />
             <!-- change this to something that will be returned by the server -->
         </block>
     </form>

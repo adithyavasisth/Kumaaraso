@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1" application="index.xml">
+<vxml version="2.1">
     <menu id="questions" dtmf="true">
         <!-- provide a disclaimer and ask the user to select an option -->
         <prompt xml:lang="en-us">

@@ -63,8 +63,8 @@ app.post("/question", upload.single("question"), (req, res) => {
   });
 });
 
-app.get("/index.xml", (req, res) => {
-  fs.readFile("./voice-xml/index.xml", (err, data) => {
+app.get("/entry.xml", (req, res) => {
+  fs.readFile("./voice-xml/entry.xml", (err, data) => {
     if (err) throw err;
     res.type("text/xml");
     res.status(200).send(data);
