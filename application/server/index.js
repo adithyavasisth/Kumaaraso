@@ -22,15 +22,6 @@ app.get("/test", (req, res) => {
   });
 });
 
-app.get("/xml", (req, res) => {
-  fs.readFile("./voice-xml/questions-to-menu.xml", (err, data) => {
-    if (err) throw err;
-    console.log("Sending response to client...", data);
-    res.type("text/xml");
-    res.status(200).send(data);
-  });
-});
-
 // add the path of the audio file to the database
 app.post("/question", upload.single("question"), (req, res) => {
   console.log("POST request received");
@@ -64,6 +55,7 @@ app.post("/question", upload.single("question"), (req, res) => {
 });
 
 app.get("/entry.xml", (req, res) => {
+  console.log('entry.xml requested')
   fs.readFile("./voice-xml/entry.xml", (err, data) => {
     if (err) throw err;
     res.type("text/xml");
@@ -72,6 +64,7 @@ app.get("/entry.xml", (req, res) => {
 });
 
 app.get("/language.xml", (req, res) => {
+  console.log('language.xml requested')
   fs.readFile("./voice-xml/language.xml", (err, data) => {
     if (err) throw err;
     res.type("text/xml");
@@ -80,6 +73,7 @@ app.get("/language.xml", (req, res) => {
 });
 
 app.get("/questions-to-menu.xml", (req, res) => {
+  console.log('questions-to-menu.xml requested')
   fs.readFile("./voice-xml/questions-to-menu.xml", (err, data) => {
     if (err) throw err;
     res.type("text/xml");
@@ -88,6 +82,7 @@ app.get("/questions-to-menu.xml", (req, res) => {
 });
 
 function goToLanguageXML(url, res) {
+  console.log('xml url requested - ', url);
   // split the url /en/farming.xml into 'en' and 'farming.xml'
   const url_split = url.split("/");
   const language = url_split[1];
@@ -109,6 +104,7 @@ app.get('/fr/:xml_file', (req, res) => {
 
 function goToLanguageAudio(url, res) {
   // split the url /audio/en-welcome.wav into 'en' and 'en-welcome.wav'
+  console.log('audio url requested - ', url);
   const audioFile = url.split("/")[2];
   const language = audioFile.split("-")[0];
   fs.readFile(`./voice-xml/${language}/audio/${audioFile}`, (err, data) => {
