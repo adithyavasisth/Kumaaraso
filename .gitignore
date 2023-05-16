@@ -3,4 +3,4 @@ cert
 
 package-lock.json
 node_modules
-application/server/mysql-data
+application/server/database/mysql-data

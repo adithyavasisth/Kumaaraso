@@ -4,10 +4,10 @@
     <menu id="language" dtmf="true">
         <!-- prompt the user to select a language -->
         <prompt xml:lang="en-us">
-            <audio src="en/audio/en-language.wav"/>
+            <audio src="audio/en-language.wav"/>
         </prompt>
         <prompt xml:lang="fr-fr">
-            <audio src="fr/audio/fr-language.wav"/>
+            <audio src="audio/fr-language.wav"/>
         </prompt>
         <!-- define the choices and go to the next menu -->
         <choice dtmf="1" next="en/menu.xml"></choice>
@@ -15,19 +15,19 @@
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt xml:lang="en-us">
-                <audio src="en/audio/en-invalid.wav"/>
+                <audio src="audio/en-invalid.wav"/>
             </prompt>
             <prompt xml:lang="fr-fr">
-                <audio src="fr/audio/fr-invalid.wav"/>
+                <audio src="audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt xml:lang="en-us">
-                <audio src="en/audio/en-invalid.wav"/>
+                <audio src="audio/en-invalid.wav"/>
             </prompt>
             <prompt xml:lang="fr-fr">
-                <audio src="fr/audio/fr-invalid.wav"/>
+                <audio src="audio/fr-invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>

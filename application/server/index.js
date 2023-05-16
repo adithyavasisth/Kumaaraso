@@ -32,7 +32,7 @@ app.get("/xml", (req, res) => {
 });
 
 // add the path of the audio file to the database
-app.post("/", upload.single("question"), (req, res) => {
+app.post("/question", upload.single("question"), (req, res) => {
   console.log("POST request received");
 
   // remove the + sign from the caller number and add timestamp
@@ -87,52 +87,40 @@ app.get("/questions-to-menu.xml", (req, res) => {
   });
 });
 
-app.get('/en/farming.xml', (req, res) => {
-  fs.readFile('./voice-xml/en/farming.xml', (err, data) => {
+function goToLanguageXML(url, res) {
+  // split the url /en/farming.xml into 'en' and 'farming.xml'
+  const url_split = url.split("/");
+  const language = url_split[1];
+  const xml_file = url_split[2];
+  fs.readFile(`./voice-xml/${language}/${xml_file}`, (err, data) => {
     if (err) throw err;
-    res.type('text/xml');
+    res.type("text/xml");
     res.status(200).send(data);
   });
+}
+
+app.get('/en/:xml_file', (req, res) => {
+  goToLanguageXML(req.url, res);
 });
 
-app.get('/en/menu.xml', (req, res) => {
-  fs.readFile('./voice-xml/en/menu.xml', (err, data) => {
-    if (err) throw err;
-    res.type('text/xml');
-    res.status(200).send(data);
-  });
+app.get('/fr/:xml_file', (req, res) => {
+  goToLanguageXML(req.url, res);
 });
 
-app.get('/en/questions.xml', (req, res) => {
-  fs.readFile('./voice-xml/en/questions.xml', (err, data) => {
+function goToLanguageAudio(url, res) {
+  // split the url /audio/en-welcome.wav into 'en' and 'en-welcome.wav'
+  const audioFile = url.split("/")[2];
+  const language = audioFile.split("-")[0];
+  fs.readFile(`./voice-xml/${language}/audio/${audioFile}`, (err, data) => {
     if (err) throw err;
-    res.type('text/xml');
+    res.type('audio/wav');
     res.status(200).send(data);
   });
-});
+}
 
-app.get('/fr/farming.xml', (req, res) => {
-  fs.readFile('./voice-xml/fr/farming.xml', (err, data) => {
-    if (err) throw err;
-    res.type('text/xml');
-    res.status(200).send(data);
-  });
-});
-
-app.get('/fr/menu.xml', (req, res) => {
-  fs.readFile('./voice-xml/fr/menu.xml', (err, data) => {
-    if (err) throw err;
-    res.type('text/xml');
-    res.status(200).send(data);
-  });
-});
-
-app.get('/fr/questions.xml', (req, res) => {
-  fs.readFile('./voice-xml/fr/questions.xml', (err, data) => {
-    if (err) throw err;
-    res.type('text/xml');
-    res.status(200).send(data);
-  });
+// return the audio file to the client
+app.get("/audio/:audioFile", (req, res) => {
+  goToLanguageAudio(req.url, res);
 });
 
 app.listen(port, () => {
