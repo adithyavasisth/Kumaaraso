@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1"> 
+    <form id="root">
+        <block>
+            <goto next="./language.xml" />
+            <!-- change this to something that will be returned by the server -->
+        </block>
+    </form>
+</vxml>
