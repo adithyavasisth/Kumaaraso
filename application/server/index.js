@@ -22,11 +22,11 @@ app.get("/test", (req, res) => {
   });
 });
 
-app.get('/xml', (req, res) => {
-  fs.readFile('./voice-xml/questions-to-menu.xml', (err, data) => {
+app.get("/xml", (req, res) => {
+  fs.readFile("./voice-xml/questions-to-menu.xml", (err, data) => {
     if (err) throw err;
-    console.log('Sending response to client...', data);
-    res.type('text/xml');
+    console.log("Sending response to client...", data);
+    res.type("text/xml");
     res.status(200).send(data);
   });
 });
@@ -60,6 +60,78 @@ app.post("/", upload.single("question"), (req, res) => {
       console.log("Sending response to client...", data);
       res.send(data);
     });
+  });
+});
+
+app.get("/index.xml", (req, res) => {
+  fs.readFile("./voice-xml/index.xml", (err, data) => {
+    if (err) throw err;
+    res.type("text/xml");
+    res.status(200).send(data);
+  });
+});
+
+app.get("/language.xml", (req, res) => {
+  fs.readFile("./voice-xml/language.xml", (err, data) => {
+    if (err) throw err;
+    res.type("text/xml");
+    res.status(200).send(data);
+  });
+});
+
+app.get("/questions-to-menu.xml", (req, res) => {
+  fs.readFile("./voice-xml/questions-to-menu.xml", (err, data) => {
+    if (err) throw err;
+    res.type("text/xml");
+    res.status(200).send(data);
+  });
+});
+
+app.get('/en/farming.xml', (req, res) => {
+  fs.readFile('./voice-xml/en/farming.xml', (err, data) => {
+    if (err) throw err;
+    res.type('text/xml');
+    res.status(200).send(data);
+  });
+});
+
+app.get('/en/menu.xml', (req, res) => {
+  fs.readFile('./voice-xml/en/menu.xml', (err, data) => {
+    if (err) throw err;
+    res.type('text/xml');
+    res.status(200).send(data);
+  });
+});
+
+app.get('/en/questions.xml', (req, res) => {
+  fs.readFile('./voice-xml/en/questions.xml', (err, data) => {
+    if (err) throw err;
+    res.type('text/xml');
+    res.status(200).send(data);
+  });
+});
+
+app.get('/fr/farming.xml', (req, res) => {
+  fs.readFile('./voice-xml/fr/farming.xml', (err, data) => {
+    if (err) throw err;
+    res.type('text/xml');
+    res.status(200).send(data);
+  });
+});
+
+app.get('/fr/menu.xml', (req, res) => {
+  fs.readFile('./voice-xml/fr/menu.xml', (err, data) => {
+    if (err) throw err;
+    res.type('text/xml');
+    res.status(200).send(data);
+  });
+});
+
+app.get('/fr/questions.xml', (req, res) => {
+  fs.readFile('./voice-xml/fr/questions.xml', (err, data) => {
+    if (err) throw err;
+    res.type('text/xml');
+    res.status(200).send(data);
   });
 });
 
