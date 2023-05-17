@@ -25,7 +25,7 @@
 
     <!-- record the user's experience and play it back to them -->
     <form id="ask-question">
-        <var name="language" expr="fr" />
+        <var name="language" expr="'fr'" />
         <var name="caller" expr="session.connection.remote.uri"/>
         <record name="question" beep="true" maxtime="30s" type="audio/wav" dtmfterm="true">
             <!-- prompt the user to ask a question -->
@@ -43,7 +43,7 @@
             <prompt xml:lang="fr-fr">
                 <audio src="/audio/fr-asked.wav"/>
             </prompt>
-            <submit next="/question" method="post" namelist="caller question" enctype="multipart/form-data" />
+            <submit next="/question" method="post" namelist="caller language question" enctype="multipart/form-data" />
         </block>
     </form>
 
