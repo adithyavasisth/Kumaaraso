@@ -44,7 +44,7 @@
             <prompt xml:lang="en-us">
                 <audio src="/audio/en-asked.wav"/>
             </prompt>
-            <submit next="/question" method="post" namelist="caller question" enctype="multipart/form-data" />
+            <submit next="/question" method="post" namelist="caller language question" enctype="multipart/form-data" />
         </block>
     </form>
 
