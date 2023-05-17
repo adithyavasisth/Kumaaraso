@@ -3,7 +3,7 @@
     <menu id="english-menu" dtmf="true">
         <!-- list out the menu options -->
         <prompt xml:lang="en-us">
-            <audio src="audio/en-menu.wav"/>
+            <audio src="/audio/en-menu.wav"/>
         </prompt>
         <!-- go to the next menu based on the user's choice -->
         <choice dtmf="1" next="en/farming.xml"></choice>
