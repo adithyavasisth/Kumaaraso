@@ -26,7 +26,7 @@
 
     <!-- record the user's experience and play it back to them -->
     <form id="ask-question">
-        <var name="language" expr="en" />
+        <var name="language" expr="'en'" />
         <var name="caller" expr="session.connection.remote.uri"/>
         <record name="question" beep="true" maxtime="30s" type="audio/wav" dtmfterm="true">
             <!-- prompt the user to ask a question -->

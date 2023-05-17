@@ -29,8 +29,9 @@ app.post("/question", upload.single("question"), (req, res) => {
   // remove the + sign from the caller number and add timestamp
   const timestamp = new Date().toISOString().slice(0, 19);
   const caller = req.body.caller.replace("+", "") + "_" + timestamp;
+  const language = req.body.language;
   const infile = req.file.buffer;
-  const outfile_name = `audio-recording/${caller}.wav`;
+  const outfile_name = `audio-recording/${language}/${caller}.wav`;
 
   // Upload the file to Google Cloud Storage
   const storage = new Storage();
@@ -40,6 +41,7 @@ app.post("/question", upload.single("question"), (req, res) => {
 
   console.log("Uploading file to Google Cloud Storage...");
   console.log(`Caller: ${caller}`);
+  console.log(`Language: ${language}`);
   console.log(`File name: ${outfile_name}`);
 
   blob.save(infile, (err) => {
