@@ -4,13 +4,13 @@
         <block>
             <!-- welcome message in english and french -->
             <prompt>
-                <audio src="audio/en-welcome.wav" />
+                <audio src="/audio/en-welcome.wav" />
             </prompt>
             <prompt>
-                <audio src="audio/fr-welcome.wav" />
+                <audio src="/audio/fr-welcome.wav" />
             </prompt>
             <!-- prompt the user to select a language -->
-            <goto next="language.xml" />
+            <goto next="/language.xml" />
         </block>
     </form>
 </vxml>

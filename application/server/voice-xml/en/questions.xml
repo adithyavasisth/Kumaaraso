@@ -3,22 +3,22 @@
     <menu id="questions" dtmf="true">
         <!-- provide a disclaimer and ask the user to select an option -->
         <prompt xml:lang="en-us">
-            <audio src="audio/en-questions.wav"/>
+            <audio src="/audio/en-questions.wav"/>
         </prompt>
         <choice dtmf="1" next="#ask-question"></choice>
         <choice dtmf="2" next="#listen-answer"></choice>
-        <choice dtmf="3" next="en/menu.xml"></choice>
-        <choice dtmf="9" next="language.xml"></choice>
+        <choice dtmf="3" next="/en/menu.xml"></choice>
+        <choice dtmf="9" next="/language.xml"></choice>
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt>
-                <audio src="audio/en-invalid.wav"/>
+                <audio src="/audio/en-invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt>
-                <audio src="audio/en-invalid.wav"/>
+                <audio src="/audio/en-invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>
@@ -31,20 +31,20 @@
         <record name="question" beep="true" maxtime="30s" type="audio/wav" dtmfterm="true">
             <!-- prompt the user to ask a question -->
             <prompt xml:lang="en-us">
-                <audio src="audio/en-ask.wav"/>
+                <audio src="/audio/en-ask.wav"/>
             </prompt>
             <filled>
                 <prompt xml:lang="en-us">
-                    <audio src="audio/en-confirm.wav"/>
+                    <audio src="/audio/en-confirm.wav"/>
                 </prompt>
                 <value expr="question" />
             </filled>
         </record>
         <block>
             <prompt xml:lang="en-us">
-                <audio src="audio/en-asked.wav"/>
+                <audio src="/audio/en-asked.wav"/>
             </prompt>
-            <submit next="question" method="post" namelist="caller question" enctype="multipart/form-data" />
+            <submit next="/question" method="post" namelist="caller question" enctype="multipart/form-data" />
         </block>
     </form>
 
@@ -52,9 +52,9 @@
         <!-- not implemented for this demo and will be fetched from the database in the future -->
         <block>
             <prompt xml:lang="en-us">
-                <audio src="audio/en-listen.wav"/>
+                <audio src="/audio/en-listen.wav"/>
             </prompt>
-            <goto next="en/menu.xml" />
+            <goto next="/en/menu.xml" />
         </block>
     </form>
 </vxml>

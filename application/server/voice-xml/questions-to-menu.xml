@@ -2,7 +2,7 @@
 <vxml version="2.1">
     <form id="return-to-menu">
         <block>
-            <goto next="en/menu.xml" />
+            <goto next="/en/menu.xml" />
         </block>
     </form>
 </vxml>

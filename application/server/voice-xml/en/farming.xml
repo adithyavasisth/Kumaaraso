@@ -3,23 +3,23 @@
     <menu id="farming">
         <!-- list out the menu options -->
         <prompt xml:lang="en-us">
-            <audio src="audio/en-farming.wav"/>
+            <audio src="/audio/en-farming.wav"/>
         </prompt>
         <choice dtmf="1" next="#cultivating"></choice>
         <choice dtmf="2" next="#planting"></choice>
         <choice dtmf="3" next="#harvesting"></choice>
-        <choice dtmf="4" next="en/menu.xml"></choice>
-        <choice dtmf="9" next="language.xml"></choice>
+        <choice dtmf="4" next="/en/menu.xml"></choice>
+        <choice dtmf="9" next="/language.xml"></choice>
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt xml:lang="en-us">
-                <audio src="audio/en-invalid.wav"/>
+                <audio src="/audio/en-invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt xml:lang="en-us">
-                <audio src="audio/en-invalid.wav"/>
+                <audio src="/audio/en-invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>
@@ -29,7 +29,7 @@
     <form id="cultivating">
         <block>
             <prompt xml:lang="en-us">
-                <audio src="audio/en-cultivating.wav"/>
+                <audio src="/audio/en-cultivating.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>
@@ -39,7 +39,7 @@
     <form id="planting">
         <block>
             <prompt xml:lang="en-us">
-                <audio src="audio/en-planting.wav"/>
+                <audio src="/audio/en-planting.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>
@@ -49,7 +49,7 @@
     <form id="harvesting">
         <block>
             <prompt xml:lang="en-us">
-                <audio src="audio/en-harvesting.wav"/>
+                <audio src="/audio/en-harvesting.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>
