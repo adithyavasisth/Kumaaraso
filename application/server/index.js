@@ -121,6 +121,11 @@ app.get("/audio/:audioFile", (req, res) => {
   goToLanguageAudio(req.url, res);
 });
 
+app.use((req, res) => {
+  console.log('URL not found - ', req.url);
+  res.status(404).send("404: Page not found");
+});
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
