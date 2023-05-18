@@ -22,13 +22,26 @@ services:
 
   app:
     build:
-      context: .
-      dockerfile: ./server/Dockerfile
+      context: ./server
+      dockerfile: Dockerfile
     ports:
       - 3000:3000
     depends_on:
       mysql:
         condition: service_healthy
+        restart: true
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./kumaaraso-radio-client
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    depends_on:
+      app:
+        condition: service_started
         restart: true
     networks:
       - app-network
@@ -44,6 +57,9 @@ services:
         condition: service_healthy
         restart: true
       app:
+        condition: service_started
+        restart: true
+      frontend:
         condition: service_started
         restart: true
     networks:
