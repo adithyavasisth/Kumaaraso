@@ -1,0 +1,51 @@
+<h2>List of Audio Recordings</h2>
+
+<!-- Filter inputs -->
+<div class="filters">
+  <mat-form-field>
+    <input matInput placeholder="Filter by Caller" (input)="applyFilter('caller', $event)" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Filter by Timestamp" (input)="applyFilter('timestamp', $event)" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Filter by Language" (input)="applyFilter('language', $event)" />
+  </mat-form-field>
+</div>
+
+<!-- Table -->
+<table mat-table [dataSource]="filteredRecordings" matSort>
+
+  <!-- Caller column -->
+  <ng-container matColumnDef="caller">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Caller</th>
+    <td mat-cell *matCellDef="let recording">{{ recording.caller }}</td>
+  </ng-container>
+
+  <!-- Timestamp column -->
+  <ng-container matColumnDef="timestamp">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</th>
+    <td mat-cell *matCellDef="let recording">{{ formatTimestamp(recording.timestamp) }}</td>
+  </ng-container>
+
+  <!-- Language column -->
+  <ng-container matColumnDef="language">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Language</th>
+    <td mat-cell *matCellDef="let recording">{{ recording.language }}</td>
+  </ng-container>
+
+  <!-- Path URL column -->
+  <ng-container matColumnDef="pathUrl">
+    <th mat-header-cell *matHeaderCellDef>Path URL</th>
+    <td mat-cell *matCellDef="let recording">
+      <a [href]="recording.pathUrl" target="_blank">{{ recording.pathUrl }}</a>
+    </td>
+  </ng-container>
+
+  <!-- Table rows -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

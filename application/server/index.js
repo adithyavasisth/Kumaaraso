@@ -3,7 +3,7 @@ const fs = require("fs");
 const multer = require("multer");
 const { Storage } = require("@google-cloud/storage");
 
-const { conn, add_entry } = require("./database/mysql-db");
+const { conn, add_entry, listAudioFiles } = require("./database/mysql-db");
 
 const app = express();
 const upload = multer();
@@ -21,6 +21,8 @@ app.get("/test", (req, res) => {
     res.status(200).send(rows);
   });
 });
+
+// VXML requests
 
 // add the path of the audio file to the database
 app.post("/question", upload.single("question"), (req, res) => {
@@ -57,7 +59,7 @@ app.post("/question", upload.single("question"), (req, res) => {
 });
 
 app.get("/entry.xml", (req, res) => {
-  console.log('entry.xml requested')
+  console.log("entry.xml requested");
   fs.readFile("./voice-xml/entry.xml", (err, data) => {
     if (err) throw err;
     res.type("text/xml");
@@ -66,7 +68,7 @@ app.get("/entry.xml", (req, res) => {
 });
 
 app.get("/language.xml", (req, res) => {
-  console.log('language.xml requested')
+  console.log("language.xml requested");
   fs.readFile("./voice-xml/language.xml", (err, data) => {
     if (err) throw err;
     res.type("text/xml");
@@ -75,7 +77,7 @@ app.get("/language.xml", (req, res) => {
 });
 
 app.get("/questions-to-menu.xml", (req, res) => {
-  console.log('questions-to-menu.xml requested')
+  console.log("questions-to-menu.xml requested");
   fs.readFile("./voice-xml/questions-to-menu.xml", (err, data) => {
     if (err) throw err;
     res.type("text/xml");
@@ -84,7 +86,7 @@ app.get("/questions-to-menu.xml", (req, res) => {
 });
 
 function goToLanguageXML(url, res) {
-  console.log('xml url requested - ', url);
+  console.log("xml url requested - ", url);
   // split the url /en/farming.xml into 'en' and 'farming.xml'
   const url_split = url.split("/");
   const language = url_split[1];
@@ -92,28 +94,28 @@ function goToLanguageXML(url, res) {
   fs.readFile(`./voice-xml/${language}/${xml_file}`, (err, data) => {
     if (err) throw err;
     res.type("text/xml");
-    console.log('sending xml file to client -', xml_file);
+    console.log("sending xml file to client -", xml_file);
     res.status(200).send(data);
   });
 }
 
-app.get('/en/:xml_file', (req, res) => {
+app.get("/en/:xml_file", (req, res) => {
   goToLanguageXML(req.url, res);
 });
 
-app.get('/fr/:xml_file', (req, res) => {
+app.get("/fr/:xml_file", (req, res) => {
   goToLanguageXML(req.url, res);
 });
 
 function goToLanguageAudio(url, res) {
   // split the url /audio/en-welcome.wav into 'en' and 'en-welcome.wav'
-  console.log('audio url requested - ', url);
+  console.log("audio url requested - ", url);
   const audioFile = url.split("/")[2];
   const language = audioFile.split("-")[0];
   fs.readFile(`./voice-xml/${language}/audio/${audioFile}`, (err, data) => {
     if (err) throw err;
-    res.type('audio/wav');
-    console.log('sending audio file to client -', audioFile);
+    res.type("audio/wav");
+    console.log("sending audio file to client -", audioFile);
     res.status(200).send(data);
   });
 }
@@ -123,8 +125,24 @@ app.get("/audio/:audioFile", (req, res) => {
   goToLanguageAudio(req.url, res);
 });
 
+// client side requests
+
+// return the list of audio files to the client
+app.get("/api/call-recordings", (req, res) => {
+  listAudioFiles((err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error", err);
+    } else {
+      console.log("Sending data to client...", data);
+      res.status(200).json(data);
+    }
+  });
+});
+
+// error handling and 404
 app.use((req, res) => {
-  console.log('URL not found - ', req.url);
+  console.log("URL not found - ", req.url);
   res.status(404).send("404: Page not found");
 });
 
