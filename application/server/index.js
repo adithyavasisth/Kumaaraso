@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const multer = require("multer");
+const cors = require("cors");
 const { Storage } = require("@google-cloud/storage");
 const { v4: uuidv4 } = require("uuid");
 
@@ -10,6 +11,8 @@ const app = express();
 const upload = multer();
 
 const port = 3000;
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
