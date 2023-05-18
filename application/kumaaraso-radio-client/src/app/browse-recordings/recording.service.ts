@@ -13,7 +13,7 @@ export interface Recording {
   providedIn: 'root',
 })
 export class RecordingService {
-  private baseUrl = 'http://app:8000/api';
+  private baseUrl = 'http://app:3000/api';
 
   constructor(private http: HttpClient) {}
 
