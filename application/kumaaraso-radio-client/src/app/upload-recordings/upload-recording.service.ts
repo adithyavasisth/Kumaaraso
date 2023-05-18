@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UploadRecordingService {
-  private baseUrl = 'http://app:3000/api';
+  private baseUrl = 'http://34.70.4.81:8000/api';
 
   constructor(private http: HttpClient) {}
 
