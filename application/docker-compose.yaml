@@ -10,8 +10,8 @@ services:
     ports:
       - 3307:3306
     volumes:
-      - ./database/mysql-data/:/var/lib/mysql
-      - ./database/mysql-init.sql:/docker-entrypoint-initdb.d/init.sql
+      - .server/database/mysql-data/:/var/lib/mysql
+      - .server/database/mysql-init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -uroot -proot"]
       interval: 10s
@@ -23,7 +23,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./server/Dockerfile
     ports:
       - 3000:3000
     depends_on:
