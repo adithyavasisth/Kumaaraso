@@ -5,6 +5,18 @@
   display: block;
   padding: 20px;
 }
+mat-card-header {
+  padding: 10px;
+}
+
+.filter-card {
+  margin: 20px;
+
+  mat-form-field {
+    margin-right: 10px;
+    width: 250px;
+  }
+}
 
 // Apply styling to the table
 table {
@@ -16,26 +28,9 @@ table {
     padding: 10px;
     font-weight: bold;
     text-align: left;
-
-    // Highlight the sorted column
-    div.mat-sort-header-sorted {
-      background-color: #e0e0e0;
-    }
   }
 
   td {
     padding: 10px;
-  }
-
-}
-
-
-// Style the filter inputs
-.filters {
-  margin-bottom: 10px;
-
-  mat-form-field {
-    margin-right: 10px;
-    width: 250px;
   }
 }

@@ -4,9 +4,9 @@ import { BrowseRecordingsComponent } from './browse-recordings/browse-recordings
 import { UploadRecordingsComponent } from './upload-recordings/upload-recordings.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/browse-recordings', pathMatch: 'full' },
   { path: 'browse-recordings', component: BrowseRecordingsComponent },
   { path: 'upload-recordings', component: UploadRecordingsComponent },
+  { path: '', redirectTo: '/browse-recordings', pathMatch: 'full' },
   { path: '**', redirectTo: '/browse-recordings' }
 ];
 

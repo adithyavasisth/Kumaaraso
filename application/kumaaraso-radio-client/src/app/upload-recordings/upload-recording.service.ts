@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export interface RadioRecording {
+  fileId: string;
+  timestamp: string;
+  pathUrl: string;
+  language: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,5 +23,10 @@ export class UploadRecordingService {
 
     const url = `${this.baseUrl}/radio-recordings`;
     return this.http.post(url, formData);
+  }
+
+  getRecordings() {
+    const url = `${this.baseUrl}/radio-recordings`;
+    return this.http.get<RadioRecording[]>(url);
   }
 }

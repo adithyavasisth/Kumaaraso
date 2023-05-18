@@ -1,23 +1,108 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Upload Recording</mat-card-title>
+    <mat-card-title>Radio Recordings</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
-    <div class="file-input">
-      <input type="file" (change)="onFileSelected($event)" accept=".wav" />
-    </div>
+    <mat-card class="upload-recording-card">
+      <mat-card-header>
+        <mat-card-title>Upload Radio Recording</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="file-input">
+          <input type="file" (change)="onFileSelected($event)" accept=".wav" />
+        </div>
 
-    <div class="language-input">
-      <mat-form-field>
-        <mat-label>Language</mat-label>
-        <input matInput [(ngModel)]="language" placeholder="Enter the language" />
-      </mat-form-field>
-    </div>
+        <div class="language-input">
+          <mat-form-field>
+            <mat-label>Language</mat-label>
+            <input
+              matInput
+              [(ngModel)]="language"
+              placeholder="Enter the language"
+            />
+          </mat-form-field>
+        </div>
 
-    <div class="button-container">
-      <button mat-raised-button color="primary" (click)="uploadRecording()" [disabled]="!selectedFile || !language">Upload</button>
-    </div>
+        <div class="button-container">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="uploadRecording()"
+            [disabled]="!selectedFile || !language"
+          >
+            Upload
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="filter-card">
+      <mat-card-header>
+        <mat-card-title>Filters</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Filter by FileID"
+            (input)="applyFilter('fileId', $event)"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Filter by Timestamp"
+            (input)="applyFilter('timestamp', $event)"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Filter by Language"
+            (input)="applyFilter('language', $event)"
+          />
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Table -->
+    <table mat-table [dataSource]="filteredRecordings" matSort>
+      <!-- fileId column -->
+      <ng-container matColumnDef="fileId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>fileId</th>
+        <td mat-cell *matCellDef="let recording">{{ recording.fileId }}</td>
+      </ng-container>
+
+      <!-- Timestamp column -->
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</th>
+        <td mat-cell *matCellDef="let recording">
+          {{ formatTimestamp(recording.timestamp) }}
+        </td>
+      </ng-container>
+
+      <!-- Language column -->
+      <ng-container matColumnDef="language">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Language</th>
+        <td mat-cell *matCellDef="let recording">{{ recording.language }}</td>
+      </ng-container>
+
+      <!-- Path URL column -->
+      <ng-container matColumnDef="pathUrl">
+        <th mat-header-cell *matHeaderCellDef>Path URL</th>
+        <td mat-cell *matCellDef="let recording">
+          <a [href]="recording.pathUrl" target="_blank">{{
+            recording.pathUrl
+          }}</a>
+        </td>
+      </ng-container>
+
+      <!-- Table rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
   </mat-card-content>
 </mat-card>
-
