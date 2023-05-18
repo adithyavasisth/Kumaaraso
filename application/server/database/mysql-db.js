@@ -54,4 +54,39 @@ function extractLanguageFromPathUrl(pathUrl) {
     return language;
 }
 
-module.exports = { conn, add_entry, listAudioFiles };
+// add the path of the radio recording to the database
+function add_radio_entry(file_id, pathUrl) {
+  const sql = `INSERT INTO radio (file_id, path) VALUES ('${file_id}', '${pathUrl}')`;
+
+  conn.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });
+}
+
+// list all radio files in the database
+function listRadioFiles(callback) {
+  const sql = "SELECT file_id, path FROM radio";
+
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      console.error("Error retrieving radio files:", err);
+      callback(err, null);
+    } else {
+      const radioFiles = rows.map((row) => {
+        const file = row.file_id.slice(0, -4);
+        const timestamp = file.slice(-19);
+        const fileId = file.slice(0, -20);
+        const pathUrl = row.path;
+        const language = extractLanguageFromPathUrl(pathUrl); // Extract the language from the path URL
+
+        return { fileId, timestamp, pathUrl, language };
+      });
+
+      callback(null, radioFiles);
+    }
+  });
+}
+
+
+module.exports = { conn, add_entry, listAudioFiles, add_radio_entry, listRadioFiles };

@@ -2,8 +2,9 @@ const express = require("express");
 const fs = require("fs");
 const multer = require("multer");
 const { Storage } = require("@google-cloud/storage");
+const { v4: uuidv4 } = require("uuid");
 
-const { conn, add_entry, listAudioFiles } = require("./database/mysql-db");
+const { conn, add_entry, listAudioFiles, add_radio_entry, listRadioFiles } = require("./database/mysql-db");
 
 const app = express();
 const upload = multer();
@@ -130,6 +131,52 @@ app.get("/audio/:audioFile", (req, res) => {
 // return the list of audio files to the client
 app.get("/api/call-recordings", (req, res) => {
   listAudioFiles((err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error", err);
+    } else {
+      console.log("Sending data to client...", data);
+      res.status(200).json(data);
+    }
+  });
+});
+
+// upload the radio-recording audio file to the google storage bucket and add the path to the database
+app.post("/api/radio-recordings", upload.single("recording"), (req, res) => {
+  console.log("POST request received");
+
+  const uploadedFile = req.file.buffer;
+  const language = req.body.language;
+
+  const timestamp = new Date().toISOString().slice(0, 19);
+  const filename = uuidv4() + "_" + timestamp + ".wav";
+  outfile_name = `radio-recording/${language}/${filename}`;
+
+  // Upload the file to Google Cloud Storage
+  const storage = new Storage();
+  const bucketName = "kumaaraso-audio";
+  const bucket = storage.bucket(bucketName);
+  const blob = bucket.file(outfile_name);
+
+  console.log("Uploading file to Google Cloud Storage...");
+  console.log(`Language: ${language}`);
+  console.log(`File name: ${filename}`);
+
+  blob.save(uploadedFile, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error", err);
+    }
+    // Store the path URL in the DB for later retrieval
+    const pathUrl = blob.publicUrl();
+    add_radio_entry(filename, pathUrl);
+    res.status(200).send("File uploaded successfully");
+  });
+});
+
+// return the list of radio recordings to the client
+app.get("/api/radio-recordings", (req, res) => {
+  listRadioFiles((err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send("Internal Server Error", err);

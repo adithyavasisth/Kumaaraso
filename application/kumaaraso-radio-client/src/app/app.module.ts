@@ -7,14 +7,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowseRecordingsComponent } from './browse-recordings/browse-recordings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UploadRecordingsComponent } from './upload-recordings/upload-recordings.component';
 
 @NgModule({
-  declarations: [AppComponent, BrowseRecordingsComponent],
+  declarations: [
+    AppComponent,
+    BrowseRecordingsComponent,
+    UploadRecordingsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatInputModule,
     MatSortModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

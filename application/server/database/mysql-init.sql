@@ -6,3 +6,10 @@ CREATE TABLE IF NOT EXISTS audio (
   call_id VARCHAR(512),
   path VARCHAR(512)
 );
+
+
+CREATE TABLE IF NOT EXISTS radio (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  file_id VARCHAR(512),
+  path VARCHAR(512)
+);

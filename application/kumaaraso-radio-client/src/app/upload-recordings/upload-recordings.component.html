@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Upload Recording</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="file-input">
+      <input type="file" (change)="onFileSelected($event)" accept=".wav" />
+    </div>
+
+    <div class="language-input">
+      <mat-form-field>
+        <mat-label>Language</mat-label>
+        <input matInput [(ngModel)]="language" placeholder="Enter the language" />
+      </mat-form-field>
+    </div>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="uploadRecording()" [disabled]="!selectedFile || !language">Upload</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
