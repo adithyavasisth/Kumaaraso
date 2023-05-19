@@ -177,7 +177,7 @@ app.get("/api/call-recordings", (req, res) => {
   listAudioFiles((err, data) => {
     if (err) {
       console.log(err);
-      res.status(500).send("Internal Server Error", err);
+      res.status(500).json({ error: err });
     } else {
       console.log("Sending data to client...", data);
       res.status(200).json(data);
@@ -209,12 +209,12 @@ app.post("/api/radio-recordings", upload.single("recording"), (req, res) => {
   blob.save(uploadedFile, (err) => {
     if (err) {
       console.log(err);
-      res.status(500).send("Internal Server Error", err);
+      res.status(500).json({ error: err });
     }
     // Store the path URL in the DB for later retrieval
     const pathUrl = blob.publicUrl();
     add_radio_entry(filename, pathUrl);
-    res.status(200).send("File uploaded successfully");
+    res.status(200).json({ message: "File uploaded successfully" });
   });
 });
 
@@ -223,7 +223,7 @@ app.get("/api/radio-recordings", (req, res) => {
   listRadioFiles((err, data) => {
     if (err) {
       console.log(err);
-      res.status(500).send("Internal Server Error", err);
+      res.status(500).json({ error: err });
     } else {
       console.log("Sending data to client...", data);
       res.status(200).json(data);
@@ -251,13 +251,13 @@ app.delete("/api/radio-recordings/:filename", upload.none(), (req, res) => {
   console.log(`File name: ${filename}`);
 
   blob.delete((err) => {
-    // if (err) {
-    //   console.log(err);
-    //   res.status(500).send("Internal Server Error", err);
-    // }
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: err });
+    }
     // Remove the path URL from the DB
     remove_radio_entry(filename);
-    res.status(200).send("File deleted successfully");
+    res.status(200).json({ message: "File deleted successfully" });
   });
 });
 
