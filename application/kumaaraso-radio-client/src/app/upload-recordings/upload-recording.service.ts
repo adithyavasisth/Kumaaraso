@@ -35,7 +35,7 @@ export class UploadRecordingService {
     formData.append('timestamp', timestamp);
     formData.append('language', language);
 
-    const url = `${this.baseUrl}/${fileId}`;
+    const url = `${this.baseUrl}/radio-recordings/${fileId}`;
     return this.http.delete(url, { body: formData });
   }
 }
