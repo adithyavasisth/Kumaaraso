@@ -233,6 +233,8 @@ app.get("/api/radio-recordings", (req, res) => {
 
 // delete the radio recording from the google storage bucket and remove the path from the database
 app.delete("/api/radio-recordings/:filename", (req, res) => {
+  console.log(req);
+
   const fileid = req.params.filename;
   const language = req.body.language;
   const timestamp = req.body.timestamp;
