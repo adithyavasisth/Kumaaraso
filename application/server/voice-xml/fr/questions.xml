@@ -36,7 +36,7 @@
                 <prompt xml:lang="fr-fr">
                     <audio src="/audio/fr-confirm.wav"/>
                 </prompt>
-                <value expr="/question" />
+                <value expr="question" />
             </filled>
         </record>
         <block>
@@ -48,9 +48,21 @@
     </form>
 
     <form id="listen-answer">
+        <!-- not implemented for this demo and will be fetched from the database in the future -->
         <block>
-            <prompt xml:lang="fr-fr">
+            <!-- Make a REST call to retrieve the URLs for the audio files -->
+            <prompt>
                 <audio src="/audio/fr-listen.wav"/>
+            </prompt>
+            <data name="audioData" src="/radio-recordings" />
+
+            <!-- Extract the audio file URLs from the JSON response -->
+            <foreach item="audioLink" array="audioData.audioLinks">
+                <assign name="audioLinkVar" expr="audioLink" />
+                <audio expr="audioLinkVar" />
+            </foreach>
+            <prompt>
+                <audio src="/audio/fr-listened.wav"/>
             </prompt>
             <goto next="/fr/menu.xml" />
         </block>

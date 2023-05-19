@@ -1,3 +1,6 @@
+echo Deleting old audio wav files...
+find . -name "*.wav" -type f -delete
+
 echo Generating English Audio...
 gtts-cli "Hi there. Welcome to Kumaaraso, using Artemisia to fight Malaria." -l en -o ./voice-xml/en/audio/en-welcome.mp3
 gtts-cli "Press 1 for English. Press 2 for French. Press 3 for Bambara." -l en -o ./voice-xml/en/audio/en-language.mp3
@@ -11,6 +14,8 @@ gtts-cli "You can ask your question, which will be answered by experts once ever
 gtts-cli "Please do not share any personally identifying information. Record your question after the beep. Press any key to stop recording." -l en -o ./voice-xml/en/audio/en-ask.mp3
 gtts-cli "Your question is" -l en -o ./voice-xml/en/audio/en-confirm.mp3
 gtts-cli "Thank you for your question. It will be answered by experts once every week." -l en -o ./voice-xml/en/audio/en-asked.mp3
+gtts-cli "You are listening to the answers from the Radio to the frequently asked questions." -l en -o ./voice-xml/en/audio/en-listen.mp3
+gtts-cli "That is all the answers for this week. Please call back next week for more answers." -l en -o ./voice-xml/en/audio/en-listened.mp3
 echo Done generating English Audio.
 
 echo Generating French Audio...
@@ -26,6 +31,8 @@ gtts-cli "Vous pouvez poser votre question, à laquelle des experts répondront 
 gtts-cli "VVeuillez ne pas partager d'informations d'identification personnelle. Enregistrez votre question après le bip. Appuyez sur une touche pour arrêter l'enregistrement." -l fr -o ./voice-xml/fr/audio/fr-ask.mp3
 gtts-cli "Votre question est" -l fr -o ./voice-xml/fr/audio/fr-confirm.mp3
 gtts-cli "Merci pour votre question. Des experts y répondront une fois par semaine. " -l fr -o ./voice-xml/fr/audio/fr-asked.mp3
+gtts-cli "Vous écoutez les réponses de la Radio aux questions fréquemment posées." -l fr -o ./voice-xml/fr/audio/fr-listen.mp3
+gtts-cli "Voilà toutes les réponses pour cette semaine. Merci de rappeler la semaine prochaine pour plus de réponses." -l fr -o ./voice-xml/fr/audio/fr-listened.mp3
 echo Done generating French Audio.
 
 echo Generating Bambara Audio...
@@ -41,12 +48,16 @@ gtts-cli "Aw bɛ se k’aw ka ɲininkali kɛ, min bɛna jaabi dɔnnikɛlaw fɛ s
 gtts-cli "Aw kana kunnafoni si di aw ma min bɛ aw yɛrɛ dɔn. I ka ɲininkali sɛbɛn bip kɔfɛ. Butɔn o butɔn digi walisa ka fɔli dabila." -l es -o ./voice-xml/bm/audio/bm-ask.mp3
 gtts-cli "I ka ɲininkali ye" -l es -o ./voice-xml/bm/audio/bm-confirm.mp3
 gtts-cli "Aw ni ce aw ka ɲininkali la. A bɛna jaabi dɔnnikɛlaw fɛ siɲɛ kelen dɔgɔkun o dɔgɔkun." -l es -o ./voice-xml/bm/audio/bm-asked.mp3
+gtts-cli "I bɛ ka jaabiw lamɛn ka bɔ Arajo la ɲininkali minnu bɛ kɛ tuma caman na." -l es -o ./voice-xml/bm/audio/bm-listen.mp3
+gtts-cli "O de ye nin dɔgɔkun in jaabiw bɛɛ ye. Aw ye segin ka wele dɔgɔkun nata la walasa ka jaabi wɛrɛw sɔrɔ." -l es -o ./voice-xml/bm/audio/bm-listened.mp3
 echo Done generating Bambara audio.
 
 # convert mp3 to wav
 echo Converting mp3 to wav...
 for f in $(find . -name "*.mp3"); do ffmpeg -i $f -acodec pcm_s16le -ac 1 -ar 16000 ${f/mp3/wav}; done
 # remove mp3
+
+echo Removing mp3 files...
 find . -name "*.mp3" -type f -delete
 echo Done converting mp3 to wav.
 

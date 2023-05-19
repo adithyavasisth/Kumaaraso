@@ -26,7 +26,7 @@
 
     <!-- record the user's experience and play it back to them -->
     <form id="ask-question">
-        <var name="language" expr="'en'" />
+        <var name="language" expr="'bm'" />
         <var name="caller" expr="session.connection.remote.uri"/>
         <record name="question" beep="true" maxtime="30s" type="audio/wav" dtmfterm="true">
             <!-- prompt the user to ask a question -->
@@ -51,8 +51,19 @@
     <form id="listen-answer">
         <!-- not implemented for this demo and will be fetched from the database in the future -->
         <block>
+            <!-- Make a REST call to retrieve the URLs for the audio files -->
             <prompt>
                 <audio src="/audio/bm-listen.wav"/>
+            </prompt>
+            <data name="audioData" src="/radio-recordings" />
+
+            <!-- Extract the audio file URLs from the JSON response -->
+            <foreach item="audioLink" array="audioData.audioLinks">
+                <assign name="audioLinkVar" expr="audioLink" />
+                <audio expr="audioLinkVar" />
+            </foreach>
+            <prompt>
+                <audio src="/audio/bm-listened.wav"/>
             </prompt>
             <goto next="/bm/menu.xml" />
         </block>

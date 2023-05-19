@@ -52,6 +52,9 @@
         <!-- not implemented for this demo and will be fetched from the database in the future -->
         <block>
             <!-- Make a REST call to retrieve the URLs for the audio files -->
+            <prompt>
+                <audio src="/audio/en-listen.wav"/>
+            </prompt>
             <data name="audioData" src="/radio-recordings" />
 
             <!-- Extract the audio file URLs from the JSON response -->
@@ -59,6 +62,9 @@
                 <assign name="audioLinkVar" expr="audioLink" />
                 <audio expr="audioLinkVar" />
             </foreach>
+            <prompt>
+                <audio src="/audio/en-listened.wav"/>
+            </prompt>
             <goto next="/en/menu.xml" />
         </block>
     </form>
