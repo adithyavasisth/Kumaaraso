@@ -10,7 +10,7 @@
       </mat-card-header>
       <mat-card-content>
         <div class="file-input">
-          <input type="file" (change)="onFileSelected($event)" accept=".wav" />
+          <input #fileInput type="file" (change)="onFileSelected($event)" accept=".wav" />
         </div>
 
         <div class="language-input">

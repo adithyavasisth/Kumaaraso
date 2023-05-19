@@ -1,5 +1,8 @@
-import { UploadRecordingService, RadioRecording } from './upload-recording.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  UploadRecordingService,
+  RadioRecording,
+} from './upload-recording.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
@@ -13,13 +16,19 @@ export class UploadRecordingsComponent implements OnInit {
   language: string = 'en';
 
   // table
-  displayedColumns: string[] = ['fileId', 'timestamp', 'language', 'pathUrl', 'delete'];
+  displayedColumns: string[] = [
+    'fileId',
+    'timestamp',
+    'language',
+    'pathUrl',
+    'delete',
+  ];
   recordings: RadioRecording[] = [];
   filteredRecordings: MatTableDataSource<RadioRecording>;
   filterText: string = '';
 
   @ViewChild(MatSort) sort: MatSort;
-
+  @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
 
   constructor(private uploadRecordingService: UploadRecordingService) {}
 
@@ -41,12 +50,23 @@ export class UploadRecordingsComponent implements OnInit {
       .uploadRecording(this.selectedFile, this.language)
       .subscribe({
         next: () => {
+          this.resetInputFields();
+          this.loadRecordings();
           console.log('Upload successful');
         },
         error: (error) => {
           console.error('There was an error!', error);
         },
       });
+  }
+
+  private resetInputFields() {
+    this.selectedFile = null;
+    this.language = 'en';
+
+    if (this.fileInput && this.fileInput.nativeElement) {
+      this.fileInput.nativeElement.value = '';
+    }
   }
 
   loadRecordings() {
@@ -64,15 +84,17 @@ export class UploadRecordingsComponent implements OnInit {
 
   deleteRecording(fileId: string, timestamp: string, language: string) {
     if (confirm('Are you sure you want to delete this recording?')) {
-      this.uploadRecordingService.deleteRecording(fileId, timestamp, language).subscribe({
-        next: () => {
-          console.log('Delete successful');
-          this.loadRecordings();
-        },
-        error: (error) => {
-          console.error('There was an error!', error);
-        },
-      });
+      this.uploadRecordingService
+        .deleteRecording(fileId, timestamp, language)
+        .subscribe({
+          next: () => {
+            console.log('Delete successful');
+            this.loadRecordings();
+          },
+          error: (error) => {
+            console.error('There was an error!', error);
+          },
+        });
     }
   }
 
