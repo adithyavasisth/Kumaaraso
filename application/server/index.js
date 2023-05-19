@@ -5,7 +5,13 @@ const cors = require("cors");
 const { Storage } = require("@google-cloud/storage");
 const { v4: uuidv4 } = require("uuid");
 
-const { conn, add_entry, listAudioFiles, add_radio_entry, listRadioFiles } = require("./database/mysql-db");
+const {
+  conn,
+  add_entry,
+  listAudioFiles,
+  add_radio_entry,
+  listRadioFiles,
+} = require("./database/mysql-db");
 
 const app = express();
 const upload = multer();
@@ -127,6 +133,28 @@ function goToLanguageAudio(url, res) {
 // return the audio file to the client
 app.get("/audio/:audioFile", (req, res) => {
   goToLanguageAudio(req.url, res);
+});
+
+// return the last 5 radio recordings to the vxml client
+app.get("radio-recordings", (req, res) => {
+  listRadioFiles((err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error", err);
+    } else {
+      // send the last 5 recordings according to the timestamp if 5 or more recordings exist
+      // sort the data by timestamp
+      data.sort((a, b) => {
+        return new Date(b.timestamp) - new Date(a.timestamp);
+      });
+      // send the last 5 recordings if 5 or more recordings exist
+      if (data.length >= 5) {
+        data = data.slice(0, 5);
+      }
+      console.log("Sending data to client...", data);
+      res.status(200).json(data);
+    }
+  });
 });
 
 // client side requests
