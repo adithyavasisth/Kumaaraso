@@ -51,9 +51,14 @@
     <form id="listen-answer">
         <!-- not implemented for this demo and will be fetched from the database in the future -->
         <block>
-            <prompt xml:lang="en-us">
-                <audio src="/audio/en-listen.wav"/>
-            </prompt>
+            <!-- Make a REST call to retrieve the URLs for the audio files -->
+            <data name="audioData" src="/radio-recordings" />
+
+            <!-- Extract the audio file URLs from the JSON response -->
+            <foreach item="audioLink" array="audioData.audioLinks">
+                <assign name="audioLinkVar" expr="audioLink" />
+                <audio src="{$audioLinkVar}" />
+            </foreach>
             <goto next="/en/menu.xml" />
         </block>
     </form>
