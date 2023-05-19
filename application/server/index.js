@@ -33,6 +33,9 @@ app.get("/test", (req, res) => {
   });
 });
 
+app.get('/video-recording', (req, res) => {
+  res.redirect('https://youtu.be/dQw4w9WgXcQ');
+});
 // VXML requests
 
 // add the path of the audio file to the database
