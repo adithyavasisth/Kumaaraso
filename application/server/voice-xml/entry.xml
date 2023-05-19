@@ -6,9 +6,10 @@
             <prompt>
                 <audio src="/audio/en-welcome.wav" />
             </prompt>
-            <prompt>
+            <!--  directly send them to languages! based on feedback from wendelin-->
+            <!-- <prompt>
                 <audio src="/audio/fr-welcome.wav" />
-            </prompt>
+            </prompt> -->
             <!-- prompt the user to select a language -->
             <goto next="/language.xml" />
         </block>

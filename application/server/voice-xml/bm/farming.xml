@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+    <menu id="farming">
+        <!-- list out the menu options -->
+        <prompt>
+            <audio src="/audio/bm-farming.wav"/>
+        </prompt>
+        <choice dtmf="1" next="#cultivating"></choice>
+        <choice dtmf="2" next="#planting"></choice>
+        <choice dtmf="3" next="#harvesting"></choice>
+        <choice dtmf="4" next="/bm/menu.xml"></choice>
+        <choice dtmf="9" next="/language.xml"></choice>
+        <!-- repeat the menu for no match or no input -->
+        <noinput>
+            <prompt>
+                <audio src="/audio/bm-invalid.wav"/>
+            </prompt>
+            <reprompt />
+        </noinput>
+        <nomatch>
+            <prompt>
+                <audio src="/audio/bm-invalid.wav"/>
+            </prompt>
+            <reprompt />
+        </nomatch>
+    </menu>
+
+    <!-- provide the information about cultivation -->
+    <form id="cultivating">
+        <block>
+            <prompt>
+                <audio src="/audio/bm-cultivating.wav"/>
+            </prompt>
+            <goto next="#farming" />
+        </block>
+    </form>
+
+    <!-- provide the information about planting -->
+    <form id="planting">
+        <block>
+            <prompt>
+                <audio src="/audio/bm-planting.wav"/>
+            </prompt>
+            <goto next="#farming" />
+        </block>
+    </form>
+
+    <!-- provide the information about harvesting -->
+    <form id="harvesting">
+        <block>
+            <prompt>
+                <audio src="/audio/bm-harvesting.wav"/>
+            </prompt>
+            <goto next="#farming" />
+        </block>
+    </form>
+</vxml>

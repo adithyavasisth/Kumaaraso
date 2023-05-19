@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vxml version="2.1">
-    <menu id="english-menu" dtmf="true">
+    <menu id="menu" dtmf="true">
         <prompt xml:lang="fr-fr">
             <audio src="/audio/fr-menu.wav"/>
         </prompt>

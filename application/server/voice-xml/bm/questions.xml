@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+    <menu id="questions" dtmf="true">
+        <!-- provide a disclaimer and ask the user to select an option -->
+        <prompt>
+            <audio src="/audio/bm-questions.wav"/>
+        </prompt>
+        <choice dtmf="1" next="#ask-question"></choice>
+        <choice dtmf="2" next="#listen-answer"></choice>
+        <choice dtmf="3" next="/bm/menu.xml"></choice>
+        <choice dtmf="9" next="/language.xml"></choice>
+        <!-- repeat the menu for no match or no input -->
+        <noinput>
+            <prompt>
+                <audio src="/audio/bm-invalid.wav"/>
+            </prompt>
+            <reprompt />
+        </noinput>
+        <nomatch>
+            <prompt>
+                <audio src="/audio/bm-invalid.wav"/>
+            </prompt>
+            <reprompt />
+        </nomatch>
+    </menu>
+
+    <!-- record the user's experience and play it back to them -->
+    <form id="ask-question">
+        <var name="language" expr="'en'" />
+        <var name="caller" expr="session.connection.remote.uri"/>
+        <record name="question" beep="true" maxtime="30s" type="audio/wav" dtmfterm="true">
+            <!-- prompt the user to ask a question -->
+            <prompt>
+                <audio src="/audio/bm-ask.wav"/>
+            </prompt>
+            <filled>
+                <prompt>
+                    <audio src="/audio/bm-confirm.wav"/>
+                </prompt>
+                <value expr="question" />
+            </filled>
+        </record>
+        <block>
+            <prompt>
+                <audio src="/audio/bm-asked.wav"/>
+            </prompt>
+            <submit next="/question" method="post" namelist="caller language question" enctype="multipart/form-data" />
+        </block>
+    </form>
+
+    <form id="listen-answer">
+        <!-- not implemented for this demo and will be fetched from the database in the future -->
+        <block>
+            <prompt>
+                <audio src="/audio/bm-listen.wav"/>
+            </prompt>
+            <goto next="/bm/menu.xml" />
+        </block>
+    </form>
+</vxml>

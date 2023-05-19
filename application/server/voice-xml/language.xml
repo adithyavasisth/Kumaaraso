@@ -9,16 +9,22 @@
         <prompt xml:lang="fr-fr">
             <audio src="/audio/fr-language.wav"/>
         </prompt>
+        <prompt>
+            <audio src="/audio/br-language.wav"/>
+        </prompt>
         <!-- define the choices and go to the next menu -->
         <choice dtmf="1" next="/en/menu.xml"></choice>
         <choice dtmf="2" next="/fr/menu.xml"></choice>
         <!-- repeat the menu for no match or no input -->
         <noinput>
-            <prompt xml:lang="/en-us">
+            <prompt xml:lang="en-us">
                 <audio src="/audio/en-invalid.wav"/>
             </prompt>
             <prompt xml:lang="fr-fr">
                 <audio src="/audio/fr-invalid.wav"/>
+            </prompt>
+            <prompt>
+                <audio src="/audio/br-invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
@@ -28,6 +34,9 @@
             </prompt>
             <prompt xml:lang="fr-fr">
                 <audio src="/audio/fr-invalid.wav"/>
+            </prompt>
+            <prompt>
+                <audio src="/audio/br-invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>

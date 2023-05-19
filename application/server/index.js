@@ -117,6 +117,10 @@ app.get("/fr/:xml_file", (req, res) => {
   goToLanguageXML(req.url, res);
 });
 
+app.get("/bm/:xml_file", (req, res) => {
+  goToLanguageXML(req.url, res);
+});
+
 function goToLanguageAudio(url, res) {
   // split the url /audio/en-welcome.wav into 'en' and 'en-welcome.wav'
   console.log("audio url requested - ", url);
