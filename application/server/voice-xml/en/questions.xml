@@ -57,7 +57,7 @@
             <!-- Extract the audio file URLs from the JSON response -->
             <foreach item="audioLink" array="audioData.audioLinks">
                 <assign name="audioLinkVar" expr="audioLink" />
-                <audio src="audioLinkVar" />
+                <audio expr="audioLinkVar" />
             </foreach>
             <goto next="/en/menu.xml" />
         </block>
