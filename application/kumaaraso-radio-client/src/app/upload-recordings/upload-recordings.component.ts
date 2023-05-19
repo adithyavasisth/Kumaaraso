@@ -13,7 +13,7 @@ export class UploadRecordingsComponent implements OnInit {
   language: string = 'en';
 
   // table
-  displayedColumns: string[] = ['fileId', 'timestamp', 'language', 'pathUrl'];
+  displayedColumns: string[] = ['fileId', 'timestamp', 'language', 'pathUrl', 'delete'];
   recordings: RadioRecording[] = [];
   filteredRecordings: MatTableDataSource<RadioRecording>;
   filterText: string = '';
