@@ -100,6 +100,20 @@
         </td>
       </ng-container>
 
+      <!-- Delete column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let recording">
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteRecording(recording.fileId, recording.timestamp, recording.language)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
       <!-- Table rows -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

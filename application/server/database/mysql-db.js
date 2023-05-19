@@ -88,5 +88,14 @@ function listRadioFiles(callback) {
   });
 }
 
+function remove_radio_entry(file_id) {
+  const sql = `DELETE FROM radio WHERE file_id = '${file_id}'`;
 
-module.exports = { conn, add_entry, listAudioFiles, add_radio_entry, listRadioFiles };
+  conn.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("1 record deleted");
+  });
+}
+
+
+module.exports = { conn, add_entry, listAudioFiles, add_radio_entry, listRadioFiles, remove_radio_entry };

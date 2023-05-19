@@ -29,4 +29,13 @@ export class UploadRecordingService {
     const url = `${this.baseUrl}/radio-recordings`;
     return this.http.get<RadioRecording[]>(url);
   }
+
+  deleteRecording(fileId: string, timestamp: string, language: string) {
+    const formData = new FormData();
+    formData.append('timestamp', timestamp);
+    formData.append('language', language);
+
+    const url = `${this.baseUrl}/${fileId}`;
+    return this.http.delete(url, { body: formData });
+  }
 }

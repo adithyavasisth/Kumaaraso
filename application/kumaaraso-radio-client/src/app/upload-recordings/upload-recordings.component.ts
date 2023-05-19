@@ -62,6 +62,20 @@ export class UploadRecordingsComponent implements OnInit {
     });
   }
 
+  deleteRecording(fileId: string, timestamp: string, language: string) {
+    if (confirm('Are you sure you want to delete this recording?')) {
+      this.uploadRecordingService.deleteRecording(fileId, timestamp, language).subscribe({
+        next: () => {
+          console.log('Delete successful');
+          this.loadRecordings();
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+        },
+      });
+    }
+  }
+
   applyFilter(column: string, event: Event) {
     let value = (event.target as HTMLInputElement).value;
     value = value.trim().toLowerCase();

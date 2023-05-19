@@ -11,6 +11,7 @@ const {
   listAudioFiles,
   add_radio_entry,
   listRadioFiles,
+  remove_radio_entry,
 } = require("./database/mysql-db");
 
 const app = express();
@@ -227,6 +228,36 @@ app.get("/api/radio-recordings", (req, res) => {
       console.log("Sending data to client...", data);
       res.status(200).json(data);
     }
+  });
+});
+
+// delete the radio recording from the google storage bucket and remove the path from the database
+app.delete("/api/radio-recordings/:filename", (req, res) => {
+  const fileid = req.params.filename;
+  const language = req.body.language;
+  const timestamp = req.body.timestamp;
+  const filename = fileid + "_" + timestamp + ".wav";
+
+  const pathUrl = `radio-recording/${language}/${filename}`;
+
+  // Delete the file from Google Cloud Storage
+  const storage = new Storage();
+  const bucketName = "kumaaraso-audio";
+  const bucket = storage.bucket(bucketName);
+  const blob = bucket.file(pathUrl);
+
+  console.log("Deleting file from Google Cloud Storage...");
+  console.log(`Language: ${language}`);
+  console.log(`File name: ${filename}`);
+
+  blob.delete((err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error", err);
+    }
+    // Remove the path URL from the DB
+    remove_radio_entry(pathUrl);
+    res.status(200).send("File deleted successfully");
   });
 });
 

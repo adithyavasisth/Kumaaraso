@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import { UploadRecordingsComponent } from './upload-recordings/upload-recordings
     MatButtonModule,
     MatToolbarModule,
     MatTabsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
