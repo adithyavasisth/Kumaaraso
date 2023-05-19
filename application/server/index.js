@@ -140,7 +140,7 @@ app.get("/audio/:audioFile", (req, res) => {
 });
 
 // return the last 5 radio recordings to the vxml client
-app.get("radio-recordings", (req, res) => {
+app.get("/radio-recordings", (req, res) => {
   listRadioFiles((err, data) => {
     if (err) {
       console.log(err);
@@ -151,12 +151,20 @@ app.get("radio-recordings", (req, res) => {
       data.sort((a, b) => {
         return new Date(b.timestamp) - new Date(a.timestamp);
       });
+
       // send the last 5 recordings if 5 or more recordings exist
       if (data.length >= 5) {
         data = data.slice(0, 5);
       }
-      console.log("Sending data to client...", data);
-      res.status(200).json(data);
+
+      data = data.map((recording) => {
+        return recording.pathUrl;
+      });
+
+      const response = { audioLinks: data };
+
+      console.log("Sending data to client...", response);
+      res.status(200).json(response);
     }
   });
 });
