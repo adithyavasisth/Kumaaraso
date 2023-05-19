@@ -2,7 +2,7 @@
 <vxml version="2.1">
     <menu id="english-menu" dtmf="true">
         <prompt xml:lang="fr-fr">
-            <audio src="audio/fr-menu.wav"/>
+            <audio src="/audio/fr-menu.wav"/>
         </prompt>
         <choice dtmf="1" next="/fr/farming.xml"></choice>
         <choice dtmf="2" next="/fr/questions.xml"></choice>

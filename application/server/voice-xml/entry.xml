@@ -3,10 +3,10 @@
     <form id="root">
         <block>
             <!-- welcome message in english and french -->
-            <prompt bargein="dmtf">
+            <prompt>
                 <audio src="/audio/en-welcome.wav" />
             </prompt>
-            <prompt bargein="dmtf">
+            <prompt>
                 <audio src="/audio/fr-welcome.wav" />
             </prompt>
             <!-- prompt the user to select a language -->
