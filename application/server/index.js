@@ -187,6 +187,8 @@ app.get("/api/call-recordings", (req, res) => {
 
 // upload the radio-recording audio file to the google storage bucket and add the path to the database
 app.post("/api/radio-recordings", upload.single("recording"), (req, res) => {
+  console.log("POST request received");
+
   const uploadedFile = req.file.buffer;
   const language = req.body.language;
 
@@ -231,8 +233,6 @@ app.get("/api/radio-recordings", (req, res) => {
 
 // delete the radio recording from the google storage bucket and remove the path from the database
 app.delete("/api/radio-recordings/:filename", upload.none(), (req, res) => {
-  console.log(req);
-
   const fileid = req.params.filename;
   const language = req.body.language;
   const timestamp = req.body.timestamp;
@@ -251,12 +251,12 @@ app.delete("/api/radio-recordings/:filename", upload.none(), (req, res) => {
   console.log(`File name: ${filename}`);
 
   blob.delete((err) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Internal Server Error", err);
-    }
+    // if (err) {
+    //   console.log(err);
+    //   res.status(500).send("Internal Server Error", err);
+    // }
     // Remove the path URL from the DB
-    remove_radio_entry(pathUrl);
+    remove_radio_entry(filename);
     res.status(200).send("File deleted successfully");
   });
 });
