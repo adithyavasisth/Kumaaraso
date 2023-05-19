@@ -187,8 +187,6 @@ app.get("/api/call-recordings", (req, res) => {
 
 // upload the radio-recording audio file to the google storage bucket and add the path to the database
 app.post("/api/radio-recordings", upload.single("recording"), (req, res) => {
-  console.log("POST request received");
-
   const uploadedFile = req.file.buffer;
   const language = req.body.language;
 
