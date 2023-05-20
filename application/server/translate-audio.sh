@@ -18,6 +18,9 @@ gtts-cli "You are listening to the answers from the Radio to the frequently aske
 gtts-cli "That is all the answers for this week. Please call back next week for more answers." -l en -o ./voice-xml/en/audio/en-listened.mp3
 gtts-cli "These are the list of resources that are compiled by the experts" -l en -o ./voice-xml/en/audio/en-resources.mp3
 gtts-cli "Press 1 to listen to the list of resources again. Press 2 to go back to the main menu. Press 9 to change the language." -l en -o ./voice-xml/en/audio/en-resources-menu.mp3
+gtts-cli "Resource Provider is " -l en -o ./voice-xml/en/audio/en-resource-provider.mp3
+gtts-cli "Resource Contact Name is " -l en -o ./voice-xml/en/audio/en-resource-name.mp3
+gtts-cli "Resource Contact Number is " -l en -o ./voice-xml/en/audio/en-resource-number.mp3
 echo Done generating English Audio.
 
 echo Generating French Audio...

@@ -12,11 +12,16 @@
             <foreach item="resource" array="audioData">
                 <prompt>
                     <value expr="resource.id" />
+                    <audio src="/audio/en-resource-provider.wav" />
                     <value expr="resource.resource_provider" />
+                    <audio src="/audio/en-resource-name.wav" />
                     <value expr="resource.contact_name" />
+                    <audio src="/audio/en-resource-number.wav" />
                     <value expr="resource.contact_number" />
                 </prompt>
             </foreach>
+
+            <goto next="#resources-menu" />
         </block>
     </form>
 
