@@ -1,24 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <vxml version="2.1">
     <menu id="menu" dtmf="true">
         <!-- list out the menu options -->
         <prompt xml:lang="en-us">
-            <audio src="/audio/en-menu.wav"/>/
+            <audio src="/audio/en-menu.wav" />/
         </prompt>
         <!-- go to the next menu based on the user's choice -->
-        <choice dtmf="1" next="/en/farming.xml"></choice>
-        <choice dtmf="2" next="/en/questions.xml"></choice>
-        <choice dtmf="9" next="/language.xml"></choice>
+        <choice dtmf="1" next="/en/farming.xml" />
+        <choice dtmf="2" next="/en/questions.xml" />
+        <choice dtmf="3" next="/en/resources.xml" />
+        <choice dtmf="9" next="/language.xml" />
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt xml:lang="en-us">
-                <audio src="/audio/en-invalid.wav"/>
+                <audio src="/audio/en-invalid.wav" />
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt xml:lang="en-us">
-                <audio src="/audio/en-invalid.wav"/>
+                <audio src="/audio/en-invalid.wav" />
             </prompt>
             <reprompt />
         </nomatch>
