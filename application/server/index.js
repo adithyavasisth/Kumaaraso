@@ -14,6 +14,7 @@ const {
   remove_radio_entry,
   listResources,
   addResource,
+  deleteResource,
 } = require("./database/mysql-db");
 
 const app = express();
@@ -257,7 +258,7 @@ app.post("/api/resourceslist", upload.none(), (req, res) => {
   const contact_name = req.body.contact_name;
   const contact_number = req.body.contact_number;
 
-  add_resource_entry(resource_provider, contact_name, contact_number);
+  addResource(resource_provider, contact_name, contact_number);
   res.status(200).json({ message: "Resource added successfully" });
 });
 
@@ -265,7 +266,7 @@ app.post("/api/resourceslist", upload.none(), (req, res) => {
 app.delete("/api/resourceslist/:id", upload.none(), (req, res) => {
   const id = req.params.id;
 
-  delete_resource_entry(id);
+  deleteResource(id);
   res.status(200).json({ message: "Resource deleted successfully" });
 });
 

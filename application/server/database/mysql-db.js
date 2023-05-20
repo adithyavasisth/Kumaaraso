@@ -140,4 +140,4 @@ function deleteResource(id) {
   });
 }
 
-module.exports = { conn, add_entry, listAudioFiles, add_radio_entry, listRadioFiles, remove_radio_entry, listResources, addResource };
+module.exports = { conn, add_entry, listAudioFiles, add_radio_entry, listRadioFiles, remove_radio_entry, listResources, addResource, deleteResource };
