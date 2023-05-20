@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<vxml version="2.1">
+    <form id="resources-list">
+        <block>
+            <prompt> 
+                <audio src="/audio/en-resources.wav" />
+            </prompt>
+            <!-- make a REST call to get the list of resources -->
+            <data name="audioData" src="/resources" />
+
+            <!-- extract the audio file URLs from the JSON response -->
+            <foreach item="resource" array="audioData">
+                <prompt>
+                    <value expr="resource.id" />
+                    <value expr="resource.resource_provider" />
+                    <value expr="resource.contact_name" />
+                    <value expr="resource.contact_number" />
+                </prompt>
+            </foreach>
+        </block>
+    </form>
+
+    <form id="resources-menu">
+        <menu id="resources" dtmf="true">
+            <prompt xml:lang="en-us">
+                <audio src="/audio/en-resources-menu.wav" />
+            </prompt>
+            <choice dtmf="1" next="#resources-list" />
+            <choice dtmf="2" next="/en/menu.xml" />
+            <choice dtmf="9" next="/language.xml" />
+            <noinput>
+                <prompt>
+                    <audio src="/audio/en-invalid.wav" />
+                </prompt>
+                <reprompt />
+            </noinput>
+            <nomatch>
+                <prompt>
+                    <audio src="/audio/en-invalid.wav" />
+                </prompt>
+                <reprompt />
+            </nomatch>
+        </menu>
+    </form>
+</vxml>

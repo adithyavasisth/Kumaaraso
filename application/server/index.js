@@ -176,6 +176,30 @@ app.get("/radio-recordings", (req, res) => {
   });
 });
 
+// return the last 5 recources to the vxml client
+app.get("/resources", (req, res) => {
+  listResources((err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error", err);
+    } else {
+      // send the last 5 resources
+      if (data.length >= 5) {
+        data = data.slice(0, 5);
+      }
+
+      // remap the ID from 1 to 5
+      data = data.map((resource, index) => {
+        resource.id = index + 1;
+        return resource;
+      });
+
+      console.log("Sending data to client...", data);
+      res.status(200).json(data);
+    }
+  });
+});
+
 // client side requests
 
 // return the list of audio files to the client
