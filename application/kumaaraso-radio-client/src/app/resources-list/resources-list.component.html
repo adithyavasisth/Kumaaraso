@@ -1,0 +1,134 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Resources List</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-card class="upload-resource-card">
+      <mat-card-header>
+        <mat-card-title>Add Resources</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="resource_provider"
+            placeholder="Resource Provider"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="contact_name"
+            placeholder="Contact Name"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="contact_number"
+            placeholder="Contact Number"
+          />
+        </mat-form-field>
+
+        <div class="button-container">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="uploadResource()"
+            [disabled]="!resource_provider || !contact_name || !contact_number"
+          >
+            Add Resource
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="filter-card">
+      <mat-card-header>
+        <mat-card-title>Filters</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Filter by Resource Provider"
+            (input)="applyFilter('resource_provider', $event)"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Filter by Contact Name"
+            (input)="applyFilter('contact_name', $event)"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Filter by Contact Number"
+            (input)="applyFilter('contact_number', $event)"
+          />
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Table -->
+    <table mat-table [dataSource]="filteredResources" matSort>
+      <!-- ID column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let resource">{{ resource.id }}</td>
+      </ng-container>
+
+      <!-- Resource Provider column -->
+      <ng-container matColumnDef="resource_provider">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Resource Provider
+        </th>
+        <td mat-cell *matCellDef="let resource">
+          {{ resource.resource_provider }}
+        </td>
+      </ng-container>
+
+      <!-- Contact Name column -->
+      <ng-container matColumnDef="contact_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact Name</th>
+        <td mat-cell *matCellDef="let resource">{{ resource.contact_name }}</td>
+      </ng-container>
+
+      <!-- Contact Number column -->
+      <ng-container matColumnDef="contact_number">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Contact Number
+        </th>
+        <td mat-cell *matCellDef="let resource">
+          {{ resource.contact_number }}
+        </td>
+      </ng-container>
+
+      <!-- Delete column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let resource">
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteResource(resource.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Table rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

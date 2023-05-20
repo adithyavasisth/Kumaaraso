@@ -12,6 +12,8 @@ const {
   add_radio_entry,
   listRadioFiles,
   remove_radio_entry,
+  listResources,
+  addResource,
 } = require("./database/mysql-db");
 
 const app = express();
@@ -33,8 +35,8 @@ app.get("/test", (req, res) => {
   });
 });
 
-app.get('/video-recording', (req, res) => {
-  res.redirect('https://youtu.be/dQw4w9WgXcQ');
+app.get("/video-recording", (req, res) => {
+  res.redirect("https://youtu.be/dQw4w9WgXcQ");
 });
 // VXML requests
 
@@ -232,6 +234,39 @@ app.get("/api/radio-recordings", (req, res) => {
       res.status(200).json(data);
     }
   });
+});
+
+// return resources-list
+app.get("/api/resourceslist", (req, res) => {
+  listResources((err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: err });
+    } else {
+      console.log("Sending data to client...", data);
+      res.status(200).json(data);
+    }
+  });
+});
+
+// add a new resource to the database
+app.post("/api/resourceslist", upload.none(), (req, res) => {
+  console.log("POST request received");
+
+  const resource_provider = req.body.resource_provider;
+  const contact_name = req.body.contact_name;
+  const contact_number = req.body.contact_number;
+
+  add_resource_entry(resource_provider, contact_name, contact_number);
+  res.status(200).json({ message: "Resource added successfully" });
+});
+
+// delete a resource from the database
+app.delete("/api/resourceslist/:id", upload.none(), (req, res) => {
+  const id = req.params.id;
+
+  delete_resource_entry(id);
+  res.status(200).json({ message: "Resource deleted successfully" });
 });
 
 // delete the radio recording from the google storage bucket and remove the path from the database

@@ -25,7 +25,6 @@ export class UploadRecordingsComponent implements OnInit {
   ];
   recordings: RadioRecording[] = [];
   filteredRecordings: MatTableDataSource<RadioRecording>;
-  filterText: string = '';
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;

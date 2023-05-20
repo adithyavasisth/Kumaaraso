@@ -5,8 +5,8 @@
         <prompt>
             <audio src="/audio/bm-questions.wav"/>
         </prompt>
-        <choice dtmf="1" next="#ask-question"></choice>
-        <choice dtmf="2" next="#listen-answer"></choice>
+        <choice dtmf="1" next="#listen-answer"></choice>
+        <choice dtmf="2" next="#ask-question"></choice>
         <choice dtmf="3" next="/bm/menu.xml"></choice>
         <choice dtmf="9" next="/language.xml"></choice>
         <!-- repeat the menu for no match or no input -->

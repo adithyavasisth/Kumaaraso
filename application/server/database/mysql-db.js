@@ -97,5 +97,47 @@ function remove_radio_entry(file_id) {
   });
 }
 
+// list all resources in the database
+function listResources(callback) {
+  const sql = "SELECT * FROM resources_list";
+  
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      console.error("Error retrieving resources:", err);
+      callback(err, null);
+    } else {
+      const resources = rows.map((row) => {
+        const id = row.id;
+        const resource_provider = row.resource_provider;
+        const contact_name = row.contact_name;
+        const contact_number = row.contact_number;
 
-module.exports = { conn, add_entry, listAudioFiles, add_radio_entry, listRadioFiles, remove_radio_entry };
+        return { id, resource_provider, contact_name, contact_number };
+      });
+      
+      callback(null, resources);
+    }
+  });
+}
+
+// add a resource to the database
+function addResource(resource_provider, contact_name, contact_number) {
+  const sql = `INSERT INTO resources_list (resource_provider, contact_name, contact_number) VALUES ('${resource_provider}', '${contact_name}', '${contact_number}')`;
+
+  conn.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });
+}
+
+// delete a resource from the database
+function deleteResource(id) {
+  const sql = `DELETE FROM resources_list WHERE id = '${id}'`;
+
+  conn.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("1 record deleted");
+  });
+}
+
+module.exports = { conn, add_entry, listAudioFiles, add_radio_entry, listRadioFiles, remove_radio_entry, listResources, addResource };

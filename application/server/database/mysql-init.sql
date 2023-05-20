@@ -13,3 +13,10 @@ CREATE TABLE IF NOT EXISTS radio (
   file_id VARCHAR(512),
   path VARCHAR(512)
 );
+
+CREATE TABLE IF NOT EXISTS resources_list (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  resource_provider VARCHAR(512),
+  contact_name VARCHAR(512),
+  contact_number VARCHAR(512)
+);

@@ -18,12 +18,14 @@ import { AppComponent } from './app.component';
 import { BrowseRecordingsComponent } from './browse-recordings/browse-recordings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UploadRecordingsComponent } from './upload-recordings/upload-recordings.component';
+import { ResourcesListComponent } from './resources-list/resources-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BrowseRecordingsComponent,
     UploadRecordingsComponent,
+    ResourcesListComponent,
   ],
   imports: [
     BrowserModule,
