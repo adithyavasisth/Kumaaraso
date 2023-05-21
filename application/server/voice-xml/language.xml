@@ -10,7 +10,7 @@
             <audio src="/audio/fr-language.wav"/>
         </prompt>
         <prompt>
-            <audio src="/audio/br-language.wav"/>
+            <audio src="/audio/bm-language.wav"/>
         </prompt>
         <!-- define the choices and go to the next menu -->
         <choice dtmf="1" next="/en/menu.xml"></choice>
@@ -24,7 +24,7 @@
                 <audio src="/audio/fr-invalid.wav"/>
             </prompt>
             <prompt>
-                <audio src="/audio/br-invalid.wav"/>
+                <audio src="/audio/bm-invalid.wav"/>
             </prompt>
             <reprompt />
         </noinput>
@@ -36,7 +36,7 @@
                 <audio src="/audio/fr-invalid.wav"/>
             </prompt>
             <prompt>
-                <audio src="/audio/br-invalid.wav"/>
+                <audio src="/audio/bm-invalid.wav"/>
             </prompt>
             <reprompt />
         </nomatch>
