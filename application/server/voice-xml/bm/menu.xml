@@ -7,7 +7,8 @@
         </prompt>
         <!-- go to the next menu based on the user's choice -->
         <choice dtmf="1" next="/bm/farming.xml"></choice>
-        <choice dtmf="2" next="/bm/questions.xml"></choice>
+        <choice dtmf="2" next="/bm/resources.xml" />
+        <choice dtmf="3" next="/bm/questions.xml" />
         <choice dtmf="9" next="/language.xml"></choice>
         <!-- repeat the menu for no match or no input -->
         <noinput>

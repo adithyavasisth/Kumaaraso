@@ -3,7 +3,7 @@
     <form id="resources-list">
         <block>
             <prompt> 
-                <audio src="/audio/en-resources.wav" />
+                <audio src="/audio/fr-resources.wav" />
             </prompt>
             <!-- make a REST call to get the list of resources -->
             <data name="audioData" src="/resources" />
@@ -12,11 +12,11 @@
             <foreach item="resource" array="audioData">
                 <prompt>
                     <value expr="resource.id" />
-                    <audio src="/audio/en-resource-provider.wav" />
+                    <audio src="/audio/fr-resource-provider.wav" />
                     <value expr="resource.resource_provider" />
-                    <audio src="/audio/en-resource-number.wav" />
+                    <audio src="/audio/fr-resource-number.wav" />
                     <value expr="resource.contact_number" />
-                    <audio src="/audio/en-resource-name.wav" />
+                    <audio src="/audio/fr-resource-name.wav" />
                     <value expr="resource.contact_name" />
                 </prompt>
             </foreach>
@@ -26,21 +26,21 @@
     </form>
 
     <menu id="resources-menu" dtmf="true">
-        <prompt xml:lang="en-us">
-            <audio src="/audio/en-resources-menu.wav" />
+        <prompt xml:lang="fr-fr">
+            <audio src="/audio/fr-resources-menu.wav" />
         </prompt>
         <choice dtmf="1" next="#resources-list" />
-        <choice dtmf="2" next="/en/menu.xml" />
+        <choice dtmf="2" next="/fr/menu.xml" />
         <choice dtmf="9" next="/language.xml" />
         <noinput>
             <prompt>
-                <audio src="/audio/en-invalid.wav" />
+                <audio src="/audio/fr-invalid.wav" />
             </prompt>
             <reprompt />
         </noinput>
         <nomatch>
             <prompt>
-                <audio src="/audio/en-invalid.wav" />
+                <audio src="/audio/fr-invalid.wav" />
             </prompt>
             <reprompt />
         </nomatch>
