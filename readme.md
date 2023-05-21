@@ -6,7 +6,7 @@
 - Eva
 - Nina
 
-The application is split into the following folder structure and files:
+The ```application``` folder is split into the following folder structure and files:
 
 - ```docker-compose.yaml``` - Contains the configurations to run the docker images.
 - ```Kumaaraso-radio-client``` - Contains the angular project to run the frontend client.
@@ -18,6 +18,8 @@ The application is split into the following folder structure and files:
 - ```translate-audio.sh```  - It contains the content that is used in the voice application - it auto converts the text to wav files.
 - ```voice-xml``` - It contains all the voice xml files that is served by the server to the Voxeo platform.
 - ```index.js``` - The express file that runs the REST API Server. Serves both the Frontend Client and the Voice Application. It also handles the interactions with the Google Storage Bucket.
+
+The ```voice``` folder holds the code that is used in the Voxeo Platform.
 
 ## Instructions to run the Application
 
