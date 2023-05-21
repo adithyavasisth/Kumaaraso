@@ -25,26 +25,24 @@
         </block>
     </form>
 
-    <form id="resources-menu">
-        <menu id="resources" dtmf="true">
-            <prompt xml:lang="en-us">
-                <audio src="/audio/en-resources-menu.wav" />
+    <menu id="resources-menu" dtmf="true">
+        <prompt xml:lang="en-us">
+            <audio src="/audio/en-resources-menu.wav" />
+        </prompt>
+        <choice dtmf="1" next="#resources-list" />
+        <choice dtmf="2" next="/en/menu.xml" />
+        <choice dtmf="9" next="/language.xml" />
+        <noinput>
+            <prompt>
+                <audio src="/audio/en-invalid.wav" />
             </prompt>
-            <choice dtmf="1" next="#resources-list" />
-            <choice dtmf="2" next="/en/menu.xml" />
-            <choice dtmf="9" next="/language.xml" />
-            <noinput>
-                <prompt>
-                    <audio src="/audio/en-invalid.wav" />
-                </prompt>
-                <reprompt />
-            </noinput>
-            <nomatch>
-                <prompt>
-                    <audio src="/audio/en-invalid.wav" />
-                </prompt>
-                <reprompt />
-            </nomatch>
-        </menu>
-    </form>
+            <reprompt />
+        </noinput>
+        <nomatch>
+            <prompt>
+                <audio src="/audio/en-invalid.wav" />
+            </prompt>
+            <reprompt />
+        </nomatch>
+    </menu>
 </vxml>

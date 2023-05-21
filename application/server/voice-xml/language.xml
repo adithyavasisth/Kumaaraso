@@ -15,6 +15,7 @@
         <!-- define the choices and go to the next menu -->
         <choice dtmf="1" next="/en/menu.xml"></choice>
         <choice dtmf="2" next="/fr/menu.xml"></choice>
+        <choice dtmf="3" next="/bm/menu.xml"></choice>
         <!-- repeat the menu for no match or no input -->
         <noinput>
             <prompt xml:lang="en-us">
