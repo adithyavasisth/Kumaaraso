@@ -29,7 +29,7 @@
     <form id="cultivating">
         <block>
             <prompt xml:lang="en-us">
-                <audio src="/audio/en-cultivating.wav"/>
+                <audio src="/audio/en-cultivation.wav"/>
             </prompt>
             <goto next="#farming" />
         </block>
