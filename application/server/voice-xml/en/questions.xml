@@ -65,7 +65,7 @@
             <prompt>
                 <audio src="/audio/en-listened.wav"/>
             </prompt>
-            <goto next="/en/menu.xml" />
+            <goto next="#questions" />
         </block>
     </form>
 </vxml>
