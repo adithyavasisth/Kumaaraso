@@ -37,7 +37,21 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/video-recording", (req, res) => {
-  res.redirect("https://youtu.be/dQw4w9WgXcQ");
+  data = [
+    {
+      name: "Voice Application Demo",
+      url: "https://drive.google.com/file/d/15VqnxnuMPBwMO-9pt4vDNhtdNZaTm9Rp/view?usp=sharing",
+    },
+    {
+      name: "Pitch Video",
+      url: "https://drive.google.com/file/d/15Z7P5QmDt6rmi4vdGQCrq1OVH-76le9L/view?usp=sharing",
+    },
+    {
+      name: "Web Application Demo",
+      url: "https://drive.google.com/file/d/15YWON0Q5zduWIkhOKjBC5XQwjOn3s1Lt/view?usp=sharing",
+    },
+  ];
+  res.status(200).send(data);
 });
 // VXML requests
 
