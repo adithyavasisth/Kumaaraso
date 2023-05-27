@@ -35,20 +35,9 @@ The ```voice``` folder holds the code that is used in the Voxeo Platform.
 - Phone Number - +14073862174
 - Voxeo Code - 9996118219
 
+## Demo Videos
 
-
-<!-- ├── run.sh
-└── server
-    ├── Dockerfile
-    ├── database
-    │   ├── mysql-data
-    │   ├── mysql-db.js
-    │   └── mysql-init.sql
-    ├── index.js
-    ├── translate-audio.sh
-    └── voice-xml
-        ├── bm
-        ├── en
-        ├── entry.xml
-        ├── fr
-        └── language.xml -->
+- [Voice Application Demo](https://drive.google.com/file/d/15VqnxnuMPBwMO-9pt4vDNhtdNZaTm9Rp/view?usp=sharing)
+- [Web Application Demo](https://drive.google.com/file/d/15YWON0Q5zduWIkhOKjBC5XQwjOn3s1Lt/view?usp=sharing)
+- [Kumaaraso Pitch](https://drive.google.com/file/d/15Z7P5QmDt6rmi4vdGQCrq1OVH-76le9L/view?usp=sharing)
+- [Poster](https://drive.google.com/file/d/15Yvxt_lYM6Y1g2pIoYt8GRjWVQz9JYoQ/view?usp=sharing)
